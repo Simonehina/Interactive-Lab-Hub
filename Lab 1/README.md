@@ -241,6 +241,8 @@ https://youtu.be/zMLIxJrEEs8
 acknowledging their contributions, and credit any other influences (YouTube,
 Github, Twitter, a friend who lent you a lamp) that informed your recreation.
 
+Thank you, Simin and David for working together for this lab project.
+
 ---
 
 # Part 2 — ReMastering the light
@@ -255,6 +257,7 @@ guess the masterwork and the goals of the characters, and ask about anything tha
 wasn't clear.
 
 **Who were the other groups you kibitzed with? Add links to their project pages here.**
+
 **Summarize the feedback you got from your partners here.**
 
 ## Remix, Update, or Critique the Master
@@ -277,6 +280,8 @@ your response engages with what your master was really doing.
 
 **Document everything here — especially the storyboard and video. Photos of the
 prototype are great too.**
+
+
 
 ---
 
