@@ -136,6 +136,37 @@ and the people around it. If you're new to storyboarding, read
 [this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
 
 **Include pictures of your storyboards here.**
+**Storyboard 1**: Two fireflies interacting until they become synchronized (call and response).
+Frames:
+   1/ Two fireflies separated
+   2/ Firefly A flashes
+   3/ Firefly B sees it and responds
+   4/ A flashes again
+   5/ B responds closer in time
+   6/ They eventually flash together
+
+<img width="1786" height="2048" alt="bbbc0da77a78f78aa31d8be44d585c2e" src="https://github.com/user-attachments/assets/a4293f00-f51e-4825-b129-27b06d515467" />
+
+**Storyboard 2**: A group of fireflies flashing at different times, until they eventually become synchronized (gradual synchronization).
+Frames:
+   1/ Four fireflies in a dark forest
+   2/ Firefly A flashes
+   3/ Fireflies B and C respond at slightly different times
+   4/ Their flashes become closer together
+   5/ Everyone flashes together and continues synchronized flashing
+
+<img width="2030" height="2048" alt="8a10bc6acbd4e60a25d93f0fb20d9657" src="https://github.com/user-attachments/assets/d9d501d9-c738-45b2-8062-e1899563050c" />
+
+**Storyboard 3:** A group of male fireflies flashes together, followed by a female responding with a flash during the dark interval. 
+Frames:
+   1/ A male firefly is flying above, while a female is sitting on a plant below
+   2/ Several male fireflies produce their synchronized flash sequence
+   3/ The males stop flashing (dark interval)
+   4/ The female produces a small response flash during the dark interval
+   5/ The males flash again, responding/continuing the courtship sequence
+   6/ The female responds again during the next dark interval
+
+<img width="1253" height="1600" alt="ce9b5e1780359a890896d58fe4a42ddf" src="https://github.com/user-attachments/assets/cfa95db8-fa5a-4ad6-a817-2d02d7bc994c" />
 
 
 Use the storyboards to decide what interaction to prototype.
