@@ -93,19 +93,10 @@ the interaction*:
 someone would recognize it by?**
 Firefly synchrony is a natural phenomenon in which a group of fireflies flash their lights at the same time, producing a coordinated rhythm. This is a rare phenomenon that happens once a year, during their mating period, where males produce repeated bursts of yellow flashes individually, adjusting their timing until all flashes become synchronized. 
 
-What inputs are available to the user? What responses does the work give?
-There is no human involved in this phenomenon, but the inputs are the visual flashes from nearby fireflies. So when a firefly notices the flashes of others, they adjust the timing of its own flashing in response. And as more fireflies interact this way, their flashes become synchronized.
-Hence, the user could be one firefly interacting with other fireflies through light. The response is another flash, with its timing adjusted to the surrounding flashes.
+There is no human involved in this phenomenon, but the inputs are the visual flashes from nearby fireflies. So when a firefly notices the flashes of others, they adjust the timing of its own flashing in response. And as more fireflies interact this way, their flashes become synchronized. The main users are the male fireflies, who produce these synchronized flashes during courtship in search for a female firefly, as well as the surrounding group of fireflies. The relationship between the fireflies due to the light is for communication and courtship.
 
-Who is present, and how does the piece color the relationships between them? 
-The main users are the male fireflies, who produce these synchronized flashes during courtship in search for a female firefly, as well as the surrounding group of fireflies. 
-The relationship between the fireflies due to the light is for communication and courtship.
-
-What is the piece famous for? What are its strengths and its weaknesses? 
 This phenomenon is popular for the amazing sight of large groups of fireflies flashing their lights at the time. The main strength is that simple interactions between fireflies can create a much larger collective behaviour. But one weakness is that the synchronization depends on several factors like the number of fireflies and their ability to see each other, so is not really predictable.
 
-What is the core interaction someone would recognize it by?
-A possible interaction would be two fireflies flashing at different times, then one of them adjusts its own timing, and now both fireflies flash at the same time. We can also have more fireflies that respond in the same way, all eventually synchronizing and flashing together.
 
 
 ## Part A. Plan
