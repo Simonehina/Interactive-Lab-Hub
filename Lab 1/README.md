@@ -163,6 +163,9 @@ Frames:
 Use the storyboards to decide what interaction to prototype.
 
 **Summarize the feedback you got here.**
+One male firefly flashes its light in a dark forest at night. As he sees the flashes of nearby fireflies, he adjusts the timing of his own flash. Eventually, more fireflies synchronize until the group produces a single and coordinated flashing pattern. A female firefly observes the display and responds.
+
+
 
 ## Part B. Act out the Interaction
 
@@ -171,11 +174,15 @@ is doing what you've scripted — a person can wave a flashlight, or you can nar
 it aloud.
 
 **Are there things that seemed better on paper than when acted out?**
+Some interactions were easier to understand in the storyboards than in real life. For example, the gradual synchronization of the flashes was difficult to understand with just two people acting out as fireflies. 
+
 
 **Did new ideas about the piece surface once you were on your feet?**
+Acting out the interactions made us realize that the pauses between flashes are just as important as the flashes themselves. We also noticed that the interaction feels more natural when the fireflies do not synchronize immediately, but gradually adjust their timing.
 
-**Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+
+**Are there key moments in the interaction where things could go in a different direction?** Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+There are also some moments in the interaction where things could go in a different direction. For example, a firefly might not see another firefly’s flash and hence not respond. Or a group that is synchronizing can also be out of sync before adjusting again. These possibilities helped us think of the interaction as something dynamic rather than a fixed sequence.
 
 ## Part C. Prototype the Light (light first!)
 
@@ -202,6 +209,8 @@ video feed of whichever scene you want to capture.)
 
 **Include your first attempts at recording the wizarded set-up here.**
 
+https://youtu.be/rLAiWG1jecU
+
 ## Part E. (optional) Costume the Device
 
 Only now should you worry about what the device looks like. Costume your phone so it reads
@@ -214,7 +223,9 @@ and calm for a bedroom?
 
 **Include sketches/photos of what your device might look like here.**
 
+
 **What concerns or opportunities shaped the way you designed its look?**
+
 
 ## Part F. Record
 
@@ -223,6 +234,8 @@ the top of this lab: a viewer who knows the piece should recognize it; a viewer
 who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
 
 **Include your video here.**
+
+https://youtu.be/zMLIxJrEEs8
 
 **Please indicate who you collaborated with on this lab.** Be generous in
 acknowledging their contributions, and credit any other influences (YouTube,
