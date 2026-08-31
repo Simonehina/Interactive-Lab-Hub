@@ -2,9 +2,9 @@
 
 _This project is to be done in teams of 2._
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
+**Simin Xu & Xiaowei David Zhang Chen**
 
-**THE MASTERWORK YOU DREW FROM THE HAT:**
+**THE MASTERWORK YOU DREW FROM THE HAT:** Fireflies Synchorny
 
 ---
 
@@ -91,6 +91,22 @@ the interaction*:
 
 **Describe your masterwork here, in your own words. What is the core interaction
 someone would recognize it by?**
+Firefly synchrony is a natural phenomenon in which a group of fireflies flash their lights at the same time, producing a coordinated rhythm. This is a rare phenomenon that happens once a year, during their mating period, where males produce repeated bursts of yellow flashes individually, adjusting their timing until all flashes become synchronized. 
+
+What inputs are available to the user? What responses does the work give?
+There is no human involved in this phenomenon, but the inputs are the visual flashes from nearby fireflies. So when a firefly notices the flashes of others, they adjust the timing of its own flashing in response. And as more fireflies interact this way, their flashes become synchronized.
+Hence, the user could be one firefly interacting with other fireflies through light. The response is another flash, with its timing adjusted to the surrounding flashes.
+
+Who is present, and how does the piece color the relationships between them? 
+The main users are the male fireflies, who produce these synchronized flashes during courtship in search for a female firefly, as well as the surrounding group of fireflies. 
+The relationship between the fireflies due to the light is for communication and courtship.
+
+What is the piece famous for? What are its strengths and its weaknesses? 
+This phenomenon is popular for the amazing sight of large groups of fireflies flashing their lights at the time. The main strength is that simple interactions between fireflies can create a much larger collective behaviour. But one weakness is that the synchronization depends on several factors like the number of fireflies and their ability to see each other, so is not really predictable.
+
+What is the core interaction someone would recognize it by?
+A possible interaction would be two fireflies flashing at different times, then one of them adjusts its own timing, and now both fireflies flash at the same time. We can also have more fireflies that respond in the same way, all eventually synchronizing and flashing together.
+
 
 ## Part A. Plan
 
@@ -105,12 +121,22 @@ For your masterwork, reconstruct the interaction as a scene:
 
 **Describe your setting, players, activity, and goals here.**
 
+**Setting**. The interaction takes place at night in a dark forest, during the fireflies’ mating season. The environment is mostly dark so that the flashes can be clearly seen.
+**Players**. A group of male fireflies flying throughout the area, as well as female fireflies resting in flowers.
+**Activity**. The male fireflies flash their lights repeatedly. Other individual fireflies see the flashes of nearby fireflies and adjust the timing of their own flashes. As more fireflies interact with one another, their flashing eventually becomes coordinated and creates a collective pattern where many fireflies flash together. And during the pauses between the male flashes, female fireflies can respond with their own tiny flashes.
+**Goals**. The male fireflies are trying to attract and communicate with potential partners with their flashing pattern, while the female fireflies are trying to identify and respond to suitable males. The group synchronized pattern becomes a coordinated courtship show.
+
+**Main scenario**: One male firefly flashes its light in a dark forest at night. As he sees the flashes of nearby fireflies, he adjusts the timing of his own flash. Eventually, more fireflies synchronize until the group produces a single and coordinated flashing pattern. A female firefly observes the display and responds.
+
+
+
 Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
 don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
 and the people around it. If you're new to storyboarding, read
 [this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
 
 **Include pictures of your storyboards here.**
+
 
 Use the storyboards to decide what interaction to prototype.
 
