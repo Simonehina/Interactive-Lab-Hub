@@ -112,7 +112,7 @@ For your masterwork, reconstruct the interaction as a scene:
 
 
 
-Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
+Now **sketch 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
 don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
 and the people around it. If you're new to storyboarding, read
 [this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
@@ -249,7 +249,15 @@ wasn't clear.
 
 **Who were the other groups you kibitzed with? Add links to their project pages here.**
 
+The three groups we kibitzed with are:
+1. https://github.com/SinaL0123/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+2. https://github.com/JindiChai/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+3. https://github.com/manrongm/Interactive-Lab-Hub/tree/mm3599-lab1a/Lab%201
+
 **Summarize the feedback you got from your partners here.**
+
+Overall, the feedback was positive about our explanation of firefly synchrony and the way our storyboards showed the progression from individual flashing to gradual synchronization and male-female interaction. The main area for improvement was making the final video understandable without requiring viewers to read the storyboards or project description first. Multiple groups suggested making the firefly metaphor more visually recognizable by adding simple decorations to the phones or recreating a darker forest-like environment. We were also encouraged to make the initial differences in flashing rhythms more noticeable and show more rounds of gradual adjustment before reaching synchronization. Other suggestions included adding labels or sound to clarify the interaction and reorganizing parts of the GitHub documentation to make it easier to follow.
+
 
 ## Remix, Update, or Critique the Master
 
