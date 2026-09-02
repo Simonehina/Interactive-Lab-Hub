@@ -4,13 +4,11 @@ _This project is to be done in teams of 2._
 
 **Simin Xu & Xiaowei David Zhang Chen**
 
-**THE MASTERWORK YOU DREW FROM THE HAT:** Fireflies Synchorny
+**THE MASTERWORK YOU DREW FROM THE HAT:** Fireflies Synchrony
 
 ---
 
-One way to understand greatness is to look to the greats. Just as painters learn
-the technique and artistry of the old masters by recreating their paintings, so
-too shall we come to understand computer-mediated interaction by recreating the
+One way to understand greatness is to look to the greats. Just as painters learn the technique and artistry of the old masters by recreating their paintings, so shall we come to understand computer-mediated interaction by recreating the
 interactive masterworks of our time.
 
 This week, every team will draw a different masterwork from a hat. Some are
