@@ -6,25 +6,6 @@ _This project is to be done in teams of 2._
 
 **THE MASTERWORK YOU DREW FROM THE HAT:** Fireflies Synchrony
 
----
-
-One way to understand greatness is to look to the greats. Just as painters learn the technique and artistry of the old masters by recreating their paintings, so shall we come to understand computer-mediated interaction by recreating the interactive masterworks of our time.
-
-This week, every team will draw a different masterwork from a hat. Some are conceptual pieces, some are historical works, some are modern-day products — but they all share one thing: **their central mode of interaction is carried by light.** Think of Tinker Bell in the original stage production of *Peter Pan*, represented by nothing more than a darting circle of light from an off-stage mirror. There was no actor playing Tinker Bell; she existed entirely through the way the other characters interacted with that light.
-
-Your job is to recreate the *interaction* of the piece you drew — not to build a
-museum-grade replica, but to stage the moment that makes it what it is. Someone
-who knows your piece should watch your recreation and recognize it instantly.
-Someone who has never heard of it should walk away understanding what it is
-famous for.
-
-You will do this using the interaction staging techniques we will use all semester: a
-storyboard, some acting, a phone standing in as a controllable light (the
-* Tinkerbell* tool), a hidden human "wizard" driving it, a costume, and a
-recorded video.
-
-*Make sure you read all the instructions and understand the whole activity
-before starting!*
 
 ## Prep
 
