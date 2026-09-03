@@ -14,18 +14,9 @@ _This project is to be done in teams of 2._
 
 ## Part 0. Know Your Master
 
-Before you prototype anything, get intimately acquainted with the piece you
-drew. Do real research. You are looking less for trivia than for the *shape of
-the interaction*:
-
-- What inputs are available to the user? What responses does the work give?
-- Who is present, and how does the piece color the relationships between them?
-- What is the piece famous for? What are its strengths and its weaknesses?
-
-  Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
-
 **Describe your masterwork here, in your own words. What is the core interaction
 someone would recognize it by?**
+
 Firefly synchrony is a natural phenomenon in which a group of fireflies flash their lights at the same time, producing a coordinated rhythm. This is a rare phenomenon that happens once a year, during their mating period, where males produce repeated bursts of yellow flashes individually, adjusting their timing until all flashes become synchronized. 
 
 There is no human involved in this phenomenon, but the inputs are the visual flashes from nearby fireflies. So when a firefly notices the flashes of others, they adjust the timing of its own flashing in response. And as more fireflies interact this way, their flashes become synchronized. The main users are the male fireflies, who produce these synchronized flashes during courtship in search for a female firefly, as well as the surrounding group of fireflies. The relationship between the fireflies due to the light is for communication and courtship.
