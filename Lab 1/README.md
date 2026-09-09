@@ -158,7 +158,7 @@ Overall, the feedback was positive about our explanation of firefly synchrony an
 
 We remixed the modality by adding both light and sound to the final video performance. The paper fireflies also helped make the interaction easier for viewers to understand, while changing the setting to an outdoor area with trees and vegetation helped recreate an environment closer to where the real phenomenon occurs.
 
-Our initial storyboards were like this:
+Our initial storyboard is in file [HW1_IDDLab1 - Storyboards.pdf]:
 ![Storyboard1](./Storyboard1.jpeg)
 ![Storyboard2](./Storyboard2.jpeg)
 ![Storyboard3](./Storyboard3.jpeg)
