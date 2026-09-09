@@ -130,10 +130,10 @@ We also wanted to keep the costume simple so that it would not interfere with th
 
 Our initial first video was this: https://youtu.be/zMLIxJrEEs8
 
-But after all the classmates feedback, we improved it and here are the results: https://youtu.be/F6sdEFKfpBg
+But after all the classmates feedback, we improved it and here are the results: [https://youtu.be/F6sdEFKfpBg](https://youtu.be/iZTzm2TvfuQ)
 
 **Contributions**: 
-Xiaowei David and Simin collaborated on researching the topic and discussing the design of the storyboards and how to film the final video. David was mainly responsible for writing and organizing the GitHub content, as well as modifying the Tinkerbelle tool to recreate the firefly synchronization behaviour. Simin was mainly responsible for drawing the storyboards and planning the overall setup for the video. Both team members contributed to the development of the interaction and the final video. Thank you Claude Code for helping us polishing and modifying the Tinkerbelle code, and thanks for the useful research papers found by Simone and cited here above. Also, thank you classmates for all your helpful feedback!
+Xiaowei David and Simin collaborated on researching the topic and discussing the design of the storyboards and how to film the final video. David was mainly responsible for writing and organizing the GitHub content, as well as modifying the Tinkerbelle tool to recreate the firefly synchronization behaviour. Simin was mainly responsible for drawing the storyboards and planning the overall setup for the video. Both team members contributed to the development of the interaction and the final video. Thank you Claude Code for helping us polishing and modifying the Tinkerbelle code, and thanks for the useful research papers found by Simin and cited here above. Also, thank you classmates for all your helpful feedback!
 
 ---
 
