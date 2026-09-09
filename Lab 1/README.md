@@ -44,8 +44,8 @@ Frames:
 4. The fireflies stop flashing and the forest becomes dark again.
 5. Another synchronized burst lights up the surroundings.
 6. The person stops and watches the repeating pattern in surprise.
+<img width="1107" height="575" alt="Storyboard1" src="https://github.com/user-attachments/assets/c36ca17d-db0a-438f-97fd-ae82466c13d8" />
 
-<img width="1786" height="2048" alt="Storyboard1" src="https://github.com/user-attachments/assets/de0a67a3-66c4-4f37-bf70-24430ca42b85" />
 
 
 ### **Storyboard 2: Group Synchronization** 
