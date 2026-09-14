@@ -7,17 +7,12 @@ I finished Lab 2 by myself. Thank you Simin Xu.
 
 1. ### Set up your Lab 2 Github
 
-At the start of lab Wednesday, ensure you have the latest lab content by updating your forked repository. 
-
 **📖 [Follow the step-by-step guide for safely updating your fork](pull_updates/README.md)**
-
-This guide covers how to pull updates without overwriting your completed work, handle merge conflicts, and recover if something goes wrong.
 
 
 2. ### Get Kit and Inventory Parts
-Take inventory of the kit parts that you have, and note anything that is missing:
 
-***Update your [parts list inventory](partslist.md)***
+***Updated [parts list inventory](partslist.md)***
 
 3. ### Prepare your Pi for lab this week
 [Follow these instructions](prep.md) to download and burn the image for your Raspberry Pi before lab Wednesday.
