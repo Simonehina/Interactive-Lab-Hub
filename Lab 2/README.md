@@ -1,6 +1,11 @@
 # Interactive Prototyping: The Clock of Pi
 I finished Lab 2 by myself. Thank you Simin Xu.
 
+My incense clock combines an incense holder with a Pomodoro timer.
+Inserting the incense starts a 25-minute focus session.
+As the incense burns down, it makes the passage of time visible.
+A Raspberry Pi tracks the time and reminds the user to take a break.
+The design helps people focus on reading without checking their phones.
 
 
 ## Prep
