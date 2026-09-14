@@ -3,12 +3,20 @@
 ## Parts in the kit by Wednesday class Sep. 9th
 ### NOTE: In following list, I don't have
 1 x Adafruit PCF8574 I2C GPIO Expander Breakout - STEMMA QT / Qwiic
+
 1 x Breadboard  
-1 x Copper Foil Tape
+
+1 x Copper Foil 
+
 1 x Alligator Clips 
+
 1 x 9G Servo
+
 1 x Micro HDMI Cable - 3ft
+
 1 x SparkFun Qwiic SHIM
+
+---
 
 
 1 x [Raspberry Pi 5 Model B/8GB](https://www.raspberrypi.com/products/raspberry-pi-5/)
