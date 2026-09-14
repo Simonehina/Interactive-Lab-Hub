@@ -16,6 +16,16 @@
 
 1 x SparkFun Qwiic SHIM
 
+### But I have 4 extra things
+
+1 x Bumper
+
+1 x Sen-15177
+
+1 x CD-24606
+
+1 x COM-15168
+
 ---
 
 
