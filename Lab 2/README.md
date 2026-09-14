@@ -146,8 +146,8 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 #### Displaying an image
 
 
-
 <img width="302" height="403" alt="IMG_7680" src="https://github.com/user-attachments/assets/a7c5fc81-688f-4e6f-b920-3a0272047b28" />
+<img width="302" height="403" alt="IMG_7681" src="https://github.com/user-attachments/assets/7ef493e8-eaed-462a-9062-32f9e2ace102" />
 
 
 ## Part D. 
