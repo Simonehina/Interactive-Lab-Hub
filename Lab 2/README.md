@@ -137,15 +137,17 @@ You can type the name of a color then press either of the buttons on the MiniPiT
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ cat screen_test.py
 ```
 
+<img width="302" height="403" alt="IMG_7674" src="https://github.com/user-attachments/assets/7359a382-f3bc-463f-b99f-df2abeccb781" />
+<img width="302" height="403" alt="IMG_7672" src="https://github.com/user-attachments/assets/8c708da0-edc5-4540-9a26-c006546a214f" />
+
 #### Displaying Info with Texts
 You can look in `screen_boot_script.py` for how to display text on the screen!
 
 #### Displaying an image
 
 
-<img width="302" height="403" alt="IMG_7674" src="https://github.com/user-attachments/assets/7359a382-f3bc-463f-b99f-df2abeccb781" />
-<img width="302" height="403" alt="IMG_7672" src="https://github.com/user-attachments/assets/8c708da0-edc5-4540-9a26-c006546a214f" />
 
+<img width="302" height="403" alt="IMG_7680" src="https://github.com/user-attachments/assets/a7c5fc81-688f-4e6f-b920-3a0272047b28" />
 
 
 ## Part D. 
