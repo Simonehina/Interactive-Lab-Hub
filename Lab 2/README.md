@@ -246,11 +246,15 @@ After that, Git will ask you to login to your GitHub account to push the updates
 Do take advantage of having done the previous iteration to refine and simplify your design.
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
+<img width="768" height="528" alt="forest_lifecycle" src="https://github.com/user-attachments/assets/df9d85db-18f8-44c0-9ae0-4a87e16591de" />
+
+<img width="450"  alt="forest_preview" src="https://github.com/user-attachments/assets/4413c763-8874-4a7c-ba9e-28595f445ef6" />
+<img width="450"  alt="forest_clock" src="https://github.com/user-attachments/assets/5a7356b4-29f1-4d32-85c4-82fe380bb86a" />
 
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
-<img width="420" height="205" alt="image" src="https://github.com/user-attachments/assets/b6f3d9b5-b8d5-4bbe-834e-fed964918a72" />
+
 
 
 \*\*\***Take a video of your PiClock.**\*\*\*
