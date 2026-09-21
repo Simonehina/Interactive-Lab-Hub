@@ -227,10 +227,6 @@ Start small, pick just one element of your overall idea, just to show you have a
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
 
 
-
-
-
-
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
 ```
@@ -279,12 +275,11 @@ both read badly, the object measures the hand that places it.
 
 \*\*\***Take a video of your PiClock.**\*\*\*
 
-https://youtube.com/shorts/sIeIcUyNpqk?is=nptlzl2Y6dk615gi
+**How It Works**: https://youtube.com/shorts/sIeIcUyNpqk?is=nptlzl2Y6dk615gi
+**In Everyday Use**: https://youtu.be/uUWIYC0OSms
 
 
+Thanks, Claude Code, for helping me with the Python coding work.
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
-
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab.  Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. 
 
 
