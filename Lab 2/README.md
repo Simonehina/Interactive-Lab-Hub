@@ -244,6 +244,10 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
+<img width="480" height="270" alt="image" src="https://github.com/user-attachments/assets/d468cbe3-6b49-42e8-b0ea-54c0872ca97f" />
+
+<img width="520" height="205" alt="image" src="https://github.com/user-attachments/assets/b6f3d9b5-b8d5-4bbe-834e-fed964918a72" />
+
 
 \*\*\***Take a video of your PiClock.**\*\*\*
 
