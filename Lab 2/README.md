@@ -252,12 +252,35 @@ Do take advantage of having done the previous iteration to refine and simplify y
 <img width="450"  alt="forest_clock" src="https://github.com/user-attachments/assets/5a7356b4-29f1-4d32-85c4-82fe380bb86a" />
 
 
-\*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
+### One object, not two
+
+The piece is a single object. A base holds the electronics and the screen, the
+incense holder sits on top of it, and the APDS9960 is mounted on the holder
+itself, facing the opening where the stick goes in. From the outside there is
+no computer and no controller. There is only a screen showing the garden,
+and a stick of incense.
+
+That placement is the whole interaction. To set a lit stick down you bring your
+hand over the mouth of the holder, and the sensor reads that hand as the
+beginning of a session. The count starts in the same motion that lights the
+room, so there is nothing to press and nothing to configure. Bringing a hand
+over it again starts the block over, which is also how a session is abandoned.
+
+The incense is made to burn for about the length of one focus block, so the
+stick and the count end together. This is what answers YanShen's question about
+two clocks disagreeing: there is no moment where the screen has finished and
+half a stick is still smoking. And it answers Flora's point about sensing from
+the other side. Instead of measuring the incense, which weight and temperature
+both read badly, the object measures the hand that places it.
+
 
 
 
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+https://youtube.com/shorts/sIeIcUyNpqk?is=nptlzl2Y6dk615gi
+
 
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
