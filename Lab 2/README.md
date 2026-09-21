@@ -160,7 +160,7 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out.
 
 <img width="302" height="403" alt="IMG_7682" src="https://github.com/user-attachments/assets/7a09e722-85fe-438e-93f3-96f681aa1521" />
-https://youtube.com/shorts/49Q0SzxSumo?is=RyhRAJZbow4lPVUa
+
 
 ### How to Edit Scripts on Pi
 Option 1. One of the ways for you to edit scripts on Pi through terminal is using [`nano`](https://linuxize.com/post/how-to-use-nano-text-editor/) command. You can go into the `screen_clock.py` by typing the follow command line:
@@ -226,6 +226,7 @@ Start small, pick just one element of your overall idea, just to show you have a
 
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
 
+https://youtube.com/shorts/49Q0SzxSumo?is=RyhRAJZbow4lPVUa
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
