@@ -205,6 +205,11 @@ We strongly discourage literal digital or analog clock display: Be creative.
 1. Pick up remaining parts for kit on Wednesday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
+  **Yangchen Jin (yj645)** felt the concept was too plain to live with day to day — a stick burning down is calm, but nothing on the screen rewards you for finishing. They suggested adding animation so the device has some playfulness rather than just marking time.
+
+  **Flora Zhang (zz979)** pushed on the sensing question: at the moment you light a stick and place it in the holder, how does the system actually know? They pointed out that a weight-based trigger would be thrown off by ash falling onto the base, and that temperature is unreliable because the ember sits far above the sensor. Their advice was to get the trigger solid first, since the rest of the experience depends on it.
+
+  **YanShen (ys2473)** asked how the timer's length maps onto the incense itself. Sticks vary by brand and length, so if the countdown ends while half the stick is still burning, the user is looking at two clocks that disagree. They suggested either calibrating around one standard stick, or letting the incense itself be the timer rather than running a separate count.
 **Put the feedback for your ideas here.**
 
 ## Update your Lab Hub
