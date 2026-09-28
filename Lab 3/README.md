@@ -278,8 +278,7 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 1. **First version: Focus Garden.** I started from a voice calendar and personal secretary, then narrowed it to a task clock built on my Lab 2 pixel tree: add today's tasks by voice, confirm them, start a 25-minute focus timer, and answer "Done" or "Still working" to reminders. The storyboard and full dialogue are in [PART_D_STORYBOARD.md](PART_D_STORYBOARD.md) ([image](focus_garden_storyboard.png)).
 2. **Why I changed it.** After watching the course video, I felt the device should be like a real animal or a dog: something that normally cannot talk, now talking to you. A clock that only reads out a to-do list felt boring, so I gave it a personality: cheeky and cute.
 3. **Tamagotchi-style pet.** The pet became the home screen, and the focus tree, to-do list and clock became pages it can open. It kept the hand sensor from Lab 2 as a head pat and got idle states such as sleeping, pacing, stomping and being sick. Overdue tasks became poops to clean up. I dropped an idea to use a light sensor.
-4. **Look.** The first pink pet looked too much like a pig, so it became yellow. I added a desk so it can study with me, and a sun and moon so the screen shows the time of day.
-5. **Timing.** I chose 0.8 s in Part 1C by trying 0.2 s, 0.4 s, 0.8 s and 1.5 s myself.
+
 
 Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
 
@@ -306,15 +305,7 @@ Your script should include the pauses. Where does your device wait, and for how 
 - With no answer, it goes back to its home screen and changes nothing.
 - It always repeats a task and asks for confirmation before saving it.
 
-**Alternate paths**
 
-- Misrecognized task: the user says "No" → "Oops. Tell me the task again?"
-- Unclear time → "What time? Please say AM or PM."
-- "Still working" → "Okay. I'll bug you again in ten minutes."
-- Ignored for a long time → "I'm bored. Are we studying, or just staring?"
-- Two overdue tasks → the pet gets sick.
-- "Good night" → the pet goes to sleep.
-- Four tasks already → "My list is full. Finish one first!"
 
 ## E. Acting out the dialogue
 
