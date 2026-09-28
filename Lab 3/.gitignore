@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+models/
+voices/
+audio_devices.json
+results/
+
+# Model files and ad-hoc recordings, in case they land outside models/ or voices/
+*.onnx
+*.onnx.json
+test.wav
+pets_answer.wav

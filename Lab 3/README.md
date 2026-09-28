@@ -110,7 +110,21 @@ The demo script also shows `--output-raw`, which streams audio to the speaker as
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
+My shell file is [`greet_simone.sh`](greet_simone.sh). Following `piper_demo.sh`, it uses Piper, my favorite of the three engines, to say "Hi Simone, Hi Simone":
+
+```
+(.venv) $ ./greet_simone.sh
+```
+
 \*\***Then answer: Is the same greeting, in these different voices, the same greeting? Describe one concrete way the voice changed what the utterance seemed to mean or who seemed to be speaking.**\*\*
+
+I ran `./espeak_demo.sh`, `./festival_demo.sh`, `aplay lookdave.wav` and `./piper_demo.sh`, and also heard all three engines say the same greeting, "Hi Simone, Hi Simone".
+
+- **Best:** Piper. It was both the most natural and the friendliest.
+- **eSpeak** was the most mechanical; it sounded like a robot.
+- **Festival**'s male voice sat somewhere between natural and unnatural.
+- **Same greeting, different speaker:** the words were identical, but with eSpeak "Hi Simone" sounded like a robot saying my name, while Piper's female voice sounded like Siri greeting me.
+- **Streaming:** with `--output-raw` in `piper_demo.sh`, Piper seemed to start speaking faster than when it first wrote a file.
 
 ## B. Speech to Text
 
@@ -132,7 +146,44 @@ Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. 
 
 \*\***Record a few seconds of your own speech (`arecord -d 5 -f cd -c 1 -r 16000 test.wav`) and transcribe it with at least two model sizes. Report the real-time factor for each. At what point does the accuracy improvement stop being worth the delay, for a system that has to answer you?**\*\*
 
+I followed the course steps in `speech-scripts/`, on the Pi:
+
+```bash
+python transcribe.py lookdave.wav                  # default tiny.en
+python transcribe.py lookdave.wav --model base.en
+python transcribe.py lookdave.wav --model small.en
+arecord -d 5 -f cd -c 1 -r 16000 test.wav          # my own speech
+python transcribe.py test.wav --model base.en
+python transcribe.py test.wav --model small.en
+```
+
+`transcribe.py` runs faster-whisper on the CPU (`int8`, beam size 1). **RTF = transcription time ÷ audio duration**; model loading is reported separately and not included.
+
+| Audio | Model | Transcript | Transcription time | RTF |
+|---|---|---|---|---|
+| lookdave.wav (3.72 s) | tiny.en | Look Dave, I can see you're really upset about this. | 1.02 s | 0.28x |
+| lookdave.wav (3.72 s) | base.en | Look Dave, I can see you're really upset about this. | 2.13 s | 0.57x |
+| lookdave.wav (3.72 s) | small.en | Look Dave, I can see you're really upset about this. | 6.05 s | 1.62x |
+| My recording (5.00 s) | base.en | Hi, how's it going? | 1.97 s | 0.39x |
+| My recording (5.00 s) | small.en | Hi, how's it going? | 5.45 s | 1.09x |
+
+- **What I actually said:** "Hi, how's going" (without "it").
+- **Errors:** both models added the word "it", turning what I said into the more common phrase "how's it going". `small.en` made exactly the same mistake as `base.en`, so it was no more accurate here.
+- **Is the accuracy worth the delay?** `base.en` is good enough. `small.en` is too slow to be worth it: it took about 2.5 to 3 times as long, and its RTF was above 1, meaning it needed longer than the audio itself. For a system that has to answer me, I think recognition should be at least 80% accurate.
+
 \*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
+
+My script is [`ask_pets.sh`](ask_pets.sh). It uses the same course tools as above:
+
+1. Piper asks aloud: "How many pets do you have? Please answer with a number."
+2. `arecord` records the answer for 5 seconds (`pets_answer.wav`, not committed).
+3. `transcribe.py` with `base.en` transcribes it and saves the output to `pets_answer.txt`.
+
+| What I said | Transcript | Transcription time | RTF | Correct? |
+|---|---|---|---|---|
+| one | One | 1.63 s | 0.33x | Yes |
+
+The number came back as the word "One", not the digit "1".
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
@@ -154,6 +205,24 @@ Speak, pause, and watch it transcribe. Now change the endpointing threshold — 
 
 \*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
 
+I ran the course `listen.py` in `speech-scripts/` with the default and three other endpointing thresholds, speaking several sentences with natural pauses each time:
+
+```bash
+python listen.py                      # default: 0.4 s
+python listen.py --min-silence 0.2
+python listen.py --min-silence 1.5
+python listen.py --min-silence 0.8    # in between
+```
+
+| Threshold | What happened (examples from the transcript log) | How it felt |
+|---|---|---|
+| 0.4 s (default) | Sometimes split a sentence: after "It's a wonderful day. I love Giato." the pieces "a wonderful day." and "I love Jilato." came out as separate turns. Most turns took about 1 s to transcribe, but two took 4.7 s and 5.0 s. | Not very accurate; it occasionally cut sentences apart, and some sentences were slow. |
+| 0.2 s | Saying "hi" on its own (0.5–0.7 s turns) was transcribed as "Bye" every time. "Hi, can you hear me?" became "Hi, I can you hear me.": the drawn-out "i" in "hi" was heard as a separate "I". | It kept mishearing me: "hi" became "bye", and one continuous sound was split into two syllables. |
+| 1.5 s | No sentence was cut in the middle; 5.4 s and 5.5 s sentences arrived as one turn each. | I had to wait a second or two, but recognition was more accurate and it never cut in while I was still making my point. The wait made the system feel a bit dumb, like Siri back in the iPhone 4S days. |
+| 0.8 s | Long sentences (6.5 s and 10 s) stayed whole; "Hi, hi, hi, can you hear me?" was transcribed correctly. Most turns took about 1 s. | Very natural: I didn't have to wait long, and it still started transcribing at the right moment after I paused. |
+
+**Which threshold suits my project?** 0.8 s felt the most suitable for my device.
+
 There is no correct value. A system that takes drink orders and a system that listens to someone think out loud want very different thresholds, and the right one depends on what your users are doing with their pauses.
 
 ### The complete loop
@@ -164,17 +233,88 @@ There is no correct value. A system that takes drink orders and a system that li
 (.venv) $ python echo_bot.py
 ```
 
+I ran the course `echo_bot.py` with its default settings (`python echo_bot.py`):
+
+1. The Pi says "I'm listening." with Piper.
+2. I say one sentence.
+3. The VAD decides when I have finished (0.4 s of silence).
+4. Whisper (`tiny.en`) transcribes it.
+5. Piper repeats it back and the program exits.
+
+| I said | Heard | Reply | Recognition | Piper's first audio | Total gap |
+|---|---|---|---|---|---|
+| "pretty good" | pretty good. | "You said: pretty good." | 0.86 s | 0.18 s | 1.04 s |
+
+It repeated me correctly. I waited about a second or two for the reply, which felt fairly natural.
+
 ## D. Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
 
 \*\***Post your storyboard and diagram here.**\*\*
 
+**PiPi Clock: a cheeky talking study buddy**
+
+![PiPi Clock storyboard](pet_storyboard.png)
+
+*The screens in this storyboard are pixel-art mockups rendered from my prototype code. A prompt for an illustrated version with the student in the scene is in [`pet_storyboard_prompt.txt`](pet_storyboard_prompt.txt).*
+
+> This is a design proposal. The conversation itself is still acted out; nothing understands speech on its own yet.
+
+**Concept.** Something that normally cannot talk, a desk clock, becomes a small pet that can. The home screen is a yellow Tamagotchi-style pixel pet with a cheeky, cute personality instead of a plain reminder list.
+
+- By voice (or button B) it opens other pages: the focus tree, today's to-do list (up to four short tasks), the clock, and a status page.
+- It reacts to what I am doing: it snacks when nothing is happening, studies at its desk with glasses on during a focus session, gets bored when I idle, paces when a task is due within 30 minutes, stomps when a task is overdue, gets sick when two are overdue, and sleeps when told "Good night".
+- During a focus session, B switches between two screens: the pet studying with me (a three-frame loop: reading, writing, turning a page) and the growing tree. Every four finished sessions grow one tree.
+- A hand near the proximity sensor is a head pat: the pet jumps happily and starts listening.
+- Overdue tasks appear as little poops on the floor; finishing or postponing the task cleans them up.
+- The sky follows the real time of day: the sun rises on the left and sets on the right along one big circle beyond the screen, then the moon follows it through the night.
+- Screen badges show when it is **LISTENING**, **THINKING** or **SPEAKING**.
+
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
 
 \*\***Please describe and document your process.**\*\*
 
+1. **First version: Focus Garden.** I started from a voice calendar and personal secretary, then narrowed it to a task clock built on my Lab 2 pixel tree: add today's tasks by voice, confirm them, start a 25-minute focus timer, and answer "Done" or "Still working" to reminders. The storyboard and full dialogue are in [PART_D_STORYBOARD.md](PART_D_STORYBOARD.md) ([image](focus_garden_storyboard.png)).
+2. **Why I changed it.** After watching the course video, I felt the device should be like a real animal or a dog: something that normally cannot talk, now talking to you. A clock that only reads out a to-do list felt boring, so I gave it a personality: cheeky and cute.
+3. **Tamagotchi-style pet.** The pet became the home screen, and the focus tree, to-do list and clock became pages it can open. It kept the hand sensor from Lab 2 as a head pat and got idle states such as sleeping, pacing, stomping and being sick. Overdue tasks became poops to clean up. I dropped an idea to use a light sensor.
+4. **Look.** The first pink pet looked too much like a pig, so it became yellow. I added a desk so it can study with me, and a sun and moon so the screen shows the time of day.
+5. **Timing.** I chose 0.8 s in Part 1C by trying 0.2 s, 0.4 s, 0.8 s and 1.5 s myself.
+
 Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
+
+**Dialogue with pauses**
+
+| # | Speaker | Line or action | Wait |
+|---|---|---|---|
+| 1 | User | Waves a hand near the sensor (a head pat). | — |
+| | Pet | "Hehe, that tickles! I'm listening." | Waits **up to 8 s** for the user to start talking. |
+| 2 | User | "Remind me to finish Lab 3 at four PM." | Turn ends after **0.8 s** of silence; the pet shows THINKING. |
+| 3 | Pet | "Finish Lab 3 at four PM. Save it?" | Waits up to 8 s. |
+| | User | "Yes." → Pet: "Saved! I'll nag you later." | Saved only after "yes". |
+| 4 | User | "Start a 25-minute timer." | 0.8 s |
+| | Pet | "Starting now. I'll be quiet. Mostly." | Silent for the whole session. |
+| 5 | User | Presses B: studying together ↔ growing tree. | — |
+| 6 | Pet | Paces: "Lab 3 is due in five minutes. Done, or still working?" | Waits up to 8 s. |
+| 7 | — | No answer and 4 PM passes: a poop appears. Pet stomps: "It's late! It's LATE! Do something!" | — |
+| 8 | User | "Done!" → Pet: "Yay! I'm cleaning up the poop." | The task is ticked off and the poop is gone. |
+
+**Timing rules**
+
+- **0.8 s** of silence ends the user's turn. In Part 1C this felt the most natural: 0.2 s broke words apart and 1.5 s felt slow.
+- After the pet speaks, it waits **up to 8 s** for the user to start answering.
+- With no answer, it goes back to its home screen and changes nothing.
+- It always repeats a task and asks for confirmation before saving it.
+
+**Alternate paths**
+
+- Misrecognized task: the user says "No" → "Oops. Tell me the task again?"
+- Unclear time → "What time? Please say AM or PM."
+- "Still working" → "Okay. I'll bug you again in ten minutes."
+- Ignored for a long time → "I'm bored. Are we studying, or just staring?"
+- Two overdue tasks → the pet gets sick.
+- "Good night" → the pet goes to sleep.
+- Four tasks already → "My list is full. Finish one first!"
 
 ## E. Acting out the dialogue
 
