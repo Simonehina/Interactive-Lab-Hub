@@ -14,30 +14,15 @@ We will focus on **audio** as the main modality for interaction to start; these 
 
 A note on what you are building with. Speech interfaces are usually taught as two boxes — speech-in, speech-out — and that framing hides the part that actually determines whether an interaction works. Between listening and speaking sits the question of **whose turn it is**: when does the device decide you have finished talking, and how long does it make you wait before it answers? This lab gives you direct control over both, and we will ask you to notice what changes when you move them.
 
-</details>
-
 ## Prep for Part 1: Get the Latest Content and Pick up Additional Parts
-
-<details>
-<summary>Instructions</summary>
 
 Please check instructions in [prep.md](prep.md) and complete the setup.
 
-</details>
-
 ### Pick up Web Camera If You Don't Have One
-
-<details>
-<summary>Instructions</summary>
 
 Students who have not already received a web camera will receive their Webcam and at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these.
 
-</details>
-
 ### Get the Latest Content
-
-<details>
-<summary>Instructions</summary>
 
 As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo.
 
@@ -59,10 +44,10 @@ Option 2: On your own GitHub repo, create a pull request to get updates from the
 
 # Part 1
 
-## Setup
-
 <details>
 <summary>Instructions</summary>
+
+## Setup
 
 Create and activate a virtual environment for this lab:
 
@@ -103,12 +88,7 @@ Check your audio devices before going further. `arecord -l` lists capture device
 
 Your Pi can speak in several quite different ways, and the differences are audible in a way that matters for design. In `speech-scripts/` there are shell scripts for each.
 
-</details>
-
 ### The classic engines
-
-<details>
-<summary>Instructions</summary>
 
 ```
 (.venv) $ cd speech-scripts
@@ -124,12 +104,7 @@ You can run these `.sh` files by typing `./filename`, and read one with `cat fil
 
 These are all decades-old technology and they sound like it. `espeak-ng` is a *formant synthesizer*: it generates speech from an acoustic model of the vocal tract, which is why it sounds robotic but also why the whole thing fits in a couple of megabytes and responds instantly. `festival` is *concatenative*: they stitch together recorded fragments of a real speaker, which sounds more human but breaks audibly at the seams.
 
-</details>
-
 ### Neural TTS with Piper
-
-<details>
-<summary>Instructions</summary>
 
 Note that the Piper command line changed in version 1.x — voices are now downloaded explicitly with `python3 -m piper.download_voices`, and you invoke it as `python3 -m piper`. Tutorials you find online may show the old `echo ... | piper --model ...` form, which no longer works. Browse the [voice samples](https://rhasspy.github.io/piper-samples) and download a different one if you'd like:
 
@@ -149,12 +124,7 @@ The demo script also shows `--output-raw`, which streams audio to the speaker as
 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 
-<details>
-<summary>Instructions</summary>
-
 (This shell file should be saved to your own repo for this lab.)
-
-</details>
 
 My shell file is [`greet_simone.sh`](greet_simone.sh). Following `piper_demo.sh`, it uses Piper, my favorite of the three engines, to say "Hi Simone, Hi Simone":
 
@@ -404,24 +374,14 @@ My friend had not seen the script. Even so, the acted-out dialogue went exactly 
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
-</details>
-
 ## Prep for Part 2
-
-<details>
-<summary>Instructions</summary>
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
 2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
 3. Make a new storyboard, diagram and/or script based on these reflections.
 4. (optional) Integrate [input devices](inputs.md) in the system
 
-</details>
-
 ## Prototype your system
-
-<details>
-<summary>Instructions</summary>
 
 The system should:
 * use the Raspberry Pi
@@ -432,12 +392,7 @@ The system should:
 
 *Include videos or screencaptures of both the system and the controller.*
 
-</details>
-
 ## Test the system
-
-<details>
-<summary>Instructions</summary>
 
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
 
