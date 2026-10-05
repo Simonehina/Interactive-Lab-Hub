@@ -394,21 +394,36 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 4. (optional) Integrate [input devices](inputs.md) in the system
 
+## Prototype your system
+
 <details>
 <summary>Instructions</summary>
-
-## Prototype your system
 
 The system should:
 * use the Raspberry Pi
 * use one or more sensors
 * require participants to speak to it
 
+</details>
+
 *Document how the system works.*
+
+PiPi Clock runs on the Raspberry Pi with the Mini PiTFT screen and its two buttons, the APDS-9960 proximity sensor, a USB speaker and the webcam microphone. Reaching toward the sensor pats PiPi: it jumps, shows LISTENING and listens. The microphone ends each turn after 0.8 s of silence, Whisper (tiny.en) transcribes it, and the text appears on my controller while the screen shows THINKING. As the wizard, I choose what PiPi says on a web controller on my laptop, and Piper speaks it on the Pi while the screen shows SPEAKING. The screen also changes on its own: PiPi snacks, studies at its desk during a focus session, paces when a task is due soon and stomps when one is overdue, and the sky follows the time of day. B switches pages, and A goes back to PiPi or starts a focus session.
 
 *Include videos or screencaptures of both the system and the controller.*
 
+Screens captured from the Pi:
+
+![PiPi Clock screens captured from the Pi](part2_pi_screens.png)
+
+The controller:
+
+![Wizard of Oz controller](part2_controller.png)
+
 ## Test the system
+
+<details>
+<summary>Instructions</summary>
 
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
 
@@ -422,13 +437,13 @@ Speech recognition was not very smooth. The screenshot below is from my speech r
 ![Speech recognition test log](part2_testing.png)
 
 ### What worked well about the controller and what didn't?
-\*\**your answer here*\*\*
+The controller is clear: I can see everything I need at a glance. What didn't work as well is that the transcript also picked up other people talking nearby, and some transcripts took several seconds to appear, so I couldn't always rely on it. Adding a task also means typing it in by hand while I listen.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-\*\**your answer here*\*\*
+User interaction matters most. Claude can help me build my ideas, but I need to think carefully about which ways of interacting fit human intuition rather than AI logic. For example, my first button design, where A both started and stopped a focus session, felt confusing as soon as I used it, so I changed it to B for the next page and A for going back to PiPi. A more autonomous PiPi would also need more reliable speech recognition and a way to understand task names and times on its own, which I type in as the wizard now.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-\*\**your answer here*\*\*
+My system already logs every head pat, every transcript (with its speech length and recognition time), every line PiPi says and every wizard action to a file for each session, and with participants' consent it can also save each utterance as audio. Pairing what people said with how the wizard answered gives a dataset for teaching a more autonomous PiPi what to say. The webcam's camera could also capture whether someone is at the desk and looking at PiPi, and the proximity sensor's raw readings could show how people reach toward it.
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
