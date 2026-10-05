@@ -393,6 +393,8 @@ Your script should include the pauses. Where does your device wait, and for how 
 
 https://youtu.be/SbAvVohB8aw
 
+My friend had not seen the script. Even so, the acted-out dialogue went exactly like my script, so it did not seem different from what I imagined.
+
 ---
 
 # Lab 3 Part 2
