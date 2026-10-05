@@ -1,0 +1,8 @@
+# Part 2 pet clock: Lab 3 speech stack plus the Lab 2 screen, buttons and hand sensor.
+# Install on the Pi from Lab 3/:  .venv/bin/pip install -r pet/requirements-pet.txt
+-r ../requirements.txt
+Adafruit-Blinka==8.64.0
+adafruit-circuitpython-rgb-display==3.14.1
+adafruit-circuitpython-apds9960==3.1.16
+lgpio==0.2.2.0
+pillow>=11

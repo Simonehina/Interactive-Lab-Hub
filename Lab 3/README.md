@@ -408,7 +408,7 @@ The system should:
 
 *Document how the system works.*
 
-PiPi Clock runs on the Raspberry Pi with the Mini PiTFT screen and its two buttons, the APDS-9960 proximity sensor, a USB speaker and the webcam microphone. Reaching toward the sensor pats PiPi: it jumps, shows LISTENING and listens. The microphone ends each turn after 0.8 s of silence, Whisper (tiny.en) transcribes it, and the text appears on my controller while the screen shows THINKING. As the wizard, I choose what PiPi says on a web controller on my laptop, and Piper speaks it on the Pi while the screen shows SPEAKING. The screen also changes on its own: PiPi snacks, studies at its desk during a focus session, paces when a task is due soon and stomps when one is overdue, and the sky follows the time of day. B switches pages, and A goes back to PiPi or starts a focus session.
+PiPi Clock runs on the Raspberry Pi with the Mini PiTFT screen and its two buttons, the APDS-9960 proximity sensor, a USB speaker and the webcam microphone. Reaching toward the sensor pats PiPi: it jumps, shows LISTENING and listens. The microphone ends each turn after 0.8 s of silence, Whisper (tiny.en) transcribes it, and the text appears on my controller while the screen shows THINKING. As the wizard, I choose what PiPi says on a web controller on my laptop, and Piper speaks it on the Pi while the screen shows SPEAKING. The screen also changes on its own: PiPi snacks, studies at its desk during a focus session, paces when a task is due soon and stomps when one is overdue, and the sky follows the time of day. B switches pages, and A goes back to PiPi or starts a focus session. The code is in [pet/](pet/).
 
 *Include videos or screencaptures of both the system and the controller.*
 

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PiPi Clock Wizard</title>
+<style>
+  :root { --bg: #f6f3ee; --card: #fff; --ink: #2b2530; --muted: #8a8290; --line: #e4ddd4;
+          --pink: #d9557d; --green: #2e9a5a; --amber: #cc8a1e; --blue: #3b78c2; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, sans-serif; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; padding: 12px; max-width: 1200px; margin: auto; }
+  @media (max-width: 800px) { main { grid-template-columns: minmax(0, 1fr); } }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; }
+  h3 { font-size: 12px; color: var(--muted); margin: 8px 0 4px; font-weight: 600; }
+  button { font: inherit; border: 1px solid var(--line); background: #fbfaf8; border-radius: 8px; padding: 6px 10px; margin: 0 4px 6px 0; cursor: pointer; }
+  button:hover { border-color: var(--pink); }
+  button.on { background: var(--pink); border-color: var(--pink); color: #fff; }
+  button.line { text-align: left; }
+  input { font: inherit; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; min-width: 0; }
+  .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .grow { flex: 1; }
+  #screen { width: 100%; max-width: 480px; image-rendering: pixelated; border-radius: 8px; background: #000; display: block; }
+  .chips span { display: inline-block; padding: 2px 8px; border-radius: 99px; background: #efe9e1; margin: 0 4px 4px 0; font-size: 12px; }
+  #heard { font-size: 20px; min-height: 1.4em; color: var(--blue); font-weight: 600; }
+  #feed { max-height: 360px; overflow: auto; font-size: 13px; }
+  #feed div { padding: 3px 0; border-bottom: 1px dashed var(--line); }
+  #feed .user { color: var(--blue); font-weight: 600; }
+  #feed .pet { color: var(--pink); }
+  #feed .meta, .muted { color: var(--muted); font-size: 12px; }
+  .task { display: flex; gap: 6px; align-items: center; border-bottom: 1px dashed var(--line); padding: 4px 0; }
+  .task .t { flex: 1; }
+  .overdue { color: #c0392b; } .soon { color: var(--amber); } .done { color: var(--muted); text-decoration: line-through; }
+  #toast { position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); background: #c0392b; color: #fff; padding: 8px 14px; border-radius: 8px; display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <section>
+      <h2>What the participant sees</h2>
+      <img id="screen" src="/screen.png" alt="Live mirror of the Pi screen">
+      <div class="chips" id="chips" style="margin-top:8px"></div>
+    </section>
+    <section>
+      <h2>Participant just said</h2>
+      <div id="heard">—</div>
+      <div class="row" style="margin-top:6px">
+        <input id="heardBox" class="grow" placeholder="Type what they said if the mic missed it">
+        <button onclick="send('heard', {text: take('heardBox')})">Log</button>
+      </div>
+    </section>
+    <section>
+      <h2>Pet says</h2>
+      <div class="row">
+        <input id="sayBox" class="grow" placeholder="Type a line and press Enter">
+        <button onclick="say(take('sayBox'))">Say</button>
+      </div>
+      <div id="presets"></div>
+    </section>
+  </div>
+  <div>
+    <section>
+      <h2>Pet state</h2>
+      <h3>Mood</h3><div id="moods"></div>
+      <h3>Page</h3><div id="pages"></div>
+      <h3>Signal</h3><div id="signals"></div>
+      <button onclick="send('pat')">👋 Simulate head pat</button>
+    </section>
+    <section>
+      <h2>Focus timer <span id="focusText" class="muted"></span></h2>
+      <button onclick="send('focus_start')">Start</button>
+      <button onclick="send('focus_stop')">Stop</button>
+      <button onclick="send('focus_finish')">Finish now</button>
+    </section>
+    <section>
+      <h2>Today's tasks (max 4)</h2>
+      <div class="row">
+        <input id="taskTitle" class="grow" placeholder="Finish Lab 3">
+        <input id="taskDue" type="time" value="16:00">
+        <button onclick="addTask()">Add</button>
+      </div>
+      <div id="tasks"></div>
+    </section>
+    <section>
+      <h2>Break game <span id="gameText" class="muted"></span></h2>
+      <button onclick="send('game_new')">New number</button>
+      <button onclick="send('game_show')">Reveal</button>
+      <button onclick="send('game_result', {value: 'win'})">They guessed right</button>
+      <button onclick="send('game_result', {value: 'lose'})">They guessed wrong</button>
+    </section>
+    <section>
+      <h2>Session log</h2>
+      <div class="row" style="margin-bottom:6px">
+        <input id="noteBox" class="grow" placeholder="Wizard note (e.g. 'paused before saying the time')">
+        <button onclick="send('note', {text: take('noteBox')})">Note</button>
+      </div>
+      <div id="feed"></div>
+    </section>
+  </div>
+</main>
+<div id="toast"></div>
+<script>
+const PRESETS = {
+  'Hello / pat': ["Hehe, that tickles! Again!", "Oh! You're back! I missed you. A little.", "I'm listening. What's up?"],
+  'Tasks': ["What's the task, and when is it due?", "Saved! I'll nag you later. Promise.",
+            "Did you say AM or PM?", "My list is full. Finish one first!", "Here's your list."],
+  'Reminders': ["{task} is due soon. I'm not panicking. You're panicking.", "{task} is late! It's LATE! Do something!",
+                "Done? Really? Yay! I'm cleaning up the poop.", "Still working? Okay. I'll bug you again in ten minutes."],
+  'Focus': ["Twenty-five minutes. Starting now. I'll be quiet. Mostly.", "Time's up! Our tree grew a little!",
+            "Break time! Wanna play a game?"],
+  'Moods': ["I'm bored. Are we studying, or just staring?", "Mmm, snacks. Did you eat yet?",
+            "I don't feel so good. Maybe one focus session would help?", "Good night. Don't let the deadlines bite."],
+  'Game': ["I'm thinking of a number from one to five. Guess!", "Nope! Hehe. Try again!", "What? You got it? Hmph. Lucky guess."],
+  'Repair': ["Sorry, my ears are tiny. Say that again?", "Hmm, I didn't catch the time.",
+             "I only know tasks, timers, and the time. And being cute."],
+};
+const MOODS = ['auto', 'eat', 'study', 'bored', 'pacing', 'stomp', 'sick', 'sleep', 'happy'];
+const PAGES = ['home', 'tree', 'todo', 'clock', 'status', 'game'];
+const SIGNALS = ['listening', 'thinking', 'none'];
+const $ = id => document.getElementById(id);
+let state = null, lastUser = 0;
+
+function take(id) { const v = $(id).value.trim(); $(id).value = ''; return v; }
+function toast(msg) { $('toast').textContent = msg; $('toast').style.display = 'block'; setTimeout(() => $('toast').style.display = 'none', 2500); }
+async function send(action, extra = {}) {
+  try {
+    const r = await fetch('/api/do', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({action, ...extra})});
+    const j = await r.json();
+    if (!j.ok) toast(j.error);
+  } catch (e) { toast('Pi not reachable'); }
+  refresh();
+}
+function nextTask() {
+  const open = (state?.tasks || []).filter(t => t.status !== 'done');
+  return open.length ? open[0].title : 'Your task';
+}
+function say(text) { if (text) send('say', {text: text.replaceAll('{task}', nextTask())}); }
+function button(label, onclick, cls) {
+  const b = document.createElement('button'); b.textContent = label; b.onclick = onclick; if (cls) b.className = cls; return b;
+}
+function buildButtons(id, values, action) {
+  for (const v of values) { const b = button(v, () => send(action, {value: v})); b.dataset.value = v; $(id).append(b); }
+}
+function mark(id, value) { for (const b of $(id).children) b.classList.toggle('on', b.dataset.value === value); }
+function addTask() {
+  const title = $('taskTitle').value.trim();
+  if (!title) return toast('Task needs a title');
+  $('taskTitle').value = '';
+  send('task_add', {title, due: $('taskDue').value});
+}
+function feedLine(e) {
+  const div = document.createElement('div'), time = e.time.slice(11, 19);
+  const who = {user: '🗣 ', pet: '🐣 ', pat: '👋 head pat', note: '✎ ', error: '⚠️ '}[e.kind];
+  if (e.kind === 'user' || e.kind === 'pet') div.className = e.kind;
+  let text = who !== undefined ? who + (e.text || '') : e.kind + ' ' + [e.value, e.title, e.due, e.number].filter(x => x !== undefined).join(' ');
+  div.textContent = `${time}  ${text}`;
+  if (e.asr_s !== undefined) { const m = document.createElement('span'); m.className = 'meta'; m.textContent = `  (${e.speech_s}s speech, ${e.asr_s}s ASR)`; div.append(m); }
+  return div;
+}
+async function refresh() {
+  try { state = await (await fetch('/api/state')).json(); } catch (e) { return; }
+  $('chips').replaceChildren(...[
+    `mood: ${state.mood}${state.override !== 'auto' ? ' (set)' : ''}`, `page: ${state.page}`,
+    `signal: ${state.indicator || '—'}`, `mic: ${state.hw.mic}`, `hand: ${state.hw.hand}`, `speaker: ${state.hw.speaker}`,
+  ].map(t => { const s = document.createElement('span'); s.textContent = t; return s; }));
+  mark('moods', state.override); mark('pages', state.page); mark('signals', state.indicator || 'none');
+  $('focusText').textContent = `${state.focus.state} · ${state.focus.countdown}`;
+  const g = state.game;
+  $('gameText').textContent = g.number ? `secret: ${g.number}${g.result ? ' · ' + g.result : ''}` : '';
+  $('tasks').replaceChildren(...state.tasks.map(t => {
+    const row = document.createElement('div'); row.className = 'task';
+    const label = document.createElement('span'); label.className = 't ' + t.status;
+    label.textContent = `${t.due}  ${t.title}  (${t.status})`;
+    row.append(label, button('Done', () => send('task_done', {id: t.id})),
+               button('+10 min', () => send('task_later', {id: t.id})), button('✕', () => send('task_delete', {id: t.id})));
+    return row;
+  }));
+  const users = state.feed.filter(e => e.kind === 'user');
+  if (users.length && users.at(-1).id !== lastUser) { lastUser = users.at(-1).id; $('heard').textContent = users.at(-1).text; }
+  $('feed').replaceChildren(...state.feed.slice().reverse().map(feedLine));
+}
+
+for (const [group, lines] of Object.entries(PRESETS)) {
+  const h = document.createElement('h3'); h.textContent = group; $('presets').append(h);
+  for (const line of lines) $('presets').append(button(line, () => say(line), 'line'));
+}
+buildButtons('moods', MOODS, 'mood'); buildButtons('pages', PAGES, 'page'); buildButtons('signals', SIGNALS, 'indicator');
+$('sayBox').onkeydown = e => { if (e.key === 'Enter') say(take('sayBox')); };
+$('heardBox').onkeydown = e => { if (e.key === 'Enter') send('heard', {text: take('heardBox')}); };
+$('noteBox').onkeydown = e => { if (e.key === 'Enter') send('note', {text: take('noteBox')}); };
+$('taskTitle').onkeydown = e => { if (e.key === 'Enter') addTask(); };
+$('screen').onload = () => setTimeout(() => { $('screen').src = '/screen.png?' + Date.now(); }, 250);
+$('screen').onerror = () => setTimeout(() => { $('screen').src = '/screen.png?' + Date.now(); }, 1000);
+refresh(); setInterval(refresh, 700);
+</script>
+</body>
+</html>
