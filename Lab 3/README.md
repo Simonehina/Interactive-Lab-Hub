@@ -374,12 +374,28 @@ My friend had not seen the script. Even so, the acted-out dialogue went exactly 
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
+</details>
+
 ## Prep for Part 2
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
+
+   The wording could sound more like a little pet and be cuter. The 0.8 s delay felt fine to me. Next I want to anticipate misunderstandings: users might get annoyed and say things like "You didn't understand me," so I will collect what upset users might say, recognize those phrases, and play a prepared reply asking them to move closer to the microphone because PiPi couldn't hear them clearly.
+
 2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
+
+   On top of the screen, my new design adds three LEDs. A red LED shows an urgent task, a blue LED shows that PiPi is listening or processing, and a green LED shows that a task is done. My reason is that the LEDs show the information users need to know most often, while thinking can be seen on the screen.
+
 3. Make a new storyboard, diagram and/or script based on these reflections.
+
+   This is my new storyboard and script:
+
+   ![New PiPi Clock storyboard with LEDs](part2_storyboard.jpg)
+
 4. (optional) Integrate [input devices](inputs.md) in the system
+
+<details>
+<summary>Instructions</summary>
 
 ## Prototype your system
 
@@ -401,7 +417,9 @@ Answer the following:
 </details>
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+Speech recognition was not very smooth. The screenshot below is from my speech recognition test, and most of the transcripts were wrong. The animation was smooth, and patting PiPi through the sensor to make it listen to us felt intuitive.
+
+![Speech recognition test log](part2_testing.png)
 
 ### What worked well about the controller and what didn't?
 \*\**your answer here*\*\*
