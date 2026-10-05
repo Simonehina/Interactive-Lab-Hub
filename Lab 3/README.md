@@ -330,7 +330,6 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 *The screens in this storyboard are pixel-art mockups rendered from my prototype code. A prompt for an illustrated version with the student in the scene is in [`pet_storyboard_prompt.txt`](pet_storyboard_prompt.txt).*
 
-> This is a design proposal. The conversation itself is still acted out; nothing understands speech on its own yet.
 
 **Concept.** Something that normally cannot talk, a desk clock, becomes a small pet that can. The home screen is a yellow Tamagotchi-style pixel pet with a cheeky, cute personality instead of a plain reminder list.
 
