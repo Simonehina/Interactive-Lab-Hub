@@ -412,6 +412,8 @@ PiPi Clock runs on the Raspberry Pi with the Mini PiTFT screen and its two butto
 
 *Include videos or screencaptures of both the system and the controller.*
 
+Video of testing the prototype: https://youtube.com/shorts/w80BEt64n5s
+
 Screens captured from the Pi:
 
 ![PiPi Clock screens captured from the Pi](part2_pi_screens.png)
