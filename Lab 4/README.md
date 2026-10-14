@@ -3,7 +3,7 @@
 ---
 
 ## Lab Overview
-Team Members: Full Name (netid, github-handle), ...  Simin Xu - sx333 - Simonehina
+Team Members: Simin Xu - sx333 - Simonehina
 Project name: <name>
 
 
