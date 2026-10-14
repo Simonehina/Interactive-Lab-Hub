@@ -4,6 +4,7 @@
 
 ## Lab Overview
 Team Members: Simin Xu - sx333 - Simonehina
+
 Project name: <name>
 
 
