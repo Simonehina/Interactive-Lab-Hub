@@ -3,8 +3,8 @@
 ---
 
 ## Lab Overview
-Team: <canvas group name>  Simin Xu
-Members: Full Name (netid, github-handle), ...  
+Team: <canvas group name>  
+Members: Full Name (netid, github-handle), ...  Simin Xu - sx333 - Simonehina
 Project name: <name>
 
 
