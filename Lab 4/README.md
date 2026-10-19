@@ -292,7 +292,7 @@ I explored five ways to turn one 9 g servo (a Miuzei MS18, which only swings abo
 
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
 
-The sketches raised four questions. How far does the MS18 really turn through the Servo pHAT, and is that enough for the mechanism? Will kibble get pinched between a moving part and the housing and stall such a small servo? How much food comes out per movement, and is it the same every time? Where can the proximity sensor sit so it sees the cat at the bowl and not the person refilling the hopper? To answer them I measured the servo (the shaft sits 5.1 mm from the end of the body and the ears span 32 mm), printed the rotor and housing to check the clearance with real kibble, set the swing range in code, and read APDS-9960 values with and without something in front of it.
+The sketches raised four questions. How far does the MS18 really turn through the Servo pHAT, and is that enough for the mechanism? Will kibble get pinched between a moving part and the housing and stall such a small servo? How much food comes out per movement, and is it the same every time? Where can the proximity sensor sit so it sees the cat at the bowl and not the person refilling the hopper? To answer them I measured the servo (the shaft sits 5.1 mm from the end of the body and the ears span 32 mm), printed the rotor and housing and ran them with small wood pieces standing in for kibble, set the swing range in code, and read APDS-9960 values with and without something in front of it.
 
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
 
@@ -356,7 +356,9 @@ flowchart LR
 
 ![Where the parts sit inside the box](feeder/images/internal_layout.png)
 
-I tested each part on the Pi before putting them together. All three boards show up on one Qwiic chain (APDS-9960 at 0x39, MPR121 at 0x5A, Servo pHAT at 0x40). The teacher's scripts worked for the capacitive pads (11 of 12 pads registered touches), for the gesture sensor (up, down, left and right were all recognised) and for the proximity readings below. The servo did not move yet: the Pi sends the commands and the Servo pHAT answers on I2C, but the servo rail gets its power only from the pHAT's USB-C port, and the USB-C charger I plugged in did not power the board, so the next step is a plain USB-A supply before filming the feeder in action.
+I tested each part on the Pi before putting them together. All three boards show up on one Qwiic chain (APDS-9960 at 0x39, MPR121 at 0x5A, Servo pHAT at 0x40). The teacher's scripts worked for the capacitive pads (11 of 12 pads registered touches), for the gesture sensor (up, down, left and right were all recognised) and for the proximity readings below. In my first test the servo did not move: the Pi sent the commands and the Servo pHAT answered on I2C, but the servo rail gets its power only from the pHAT's USB-C port and the charger I first plugged in did not power the board. Once the pHAT had power the whole loop worked. In the video small wood pieces stand in for kibble and my hand takes the place of the cat: when my hand reaches the sensor, the rotor turns and a portion drops out.
+
+Video of the working prototype: [https://youtube.com/shorts/npDkDsxskDA](https://youtube.com/shorts/npDkDsxskDA)
 
 The biggest lesson was that the actuator decides the mechanism. I first thought a feeder needed a motor that keeps spinning, and wondered whether a rubber band could help the servo, but designing around the 180-degree swing gave a simpler rotor that dispenses on both strokes. Physical details mattered more than I expected: one measurement of the servo shaft position decided whether the printed mount would line up, and the laser cutter only cut once the red lines were mapped to the Cut setting in Ruby and the bed was focused. The most surprising part was power: everything looked connected and the code ran without errors, yet nothing moved, because a servo needs its own supply and a smart USB-C charger will not always feed a small board.
 
@@ -538,7 +540,7 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
-Looks like: a laser-cut maple box (21 x 17 x 27 cm inside) with the hopper chimney on top, a cat window at the bottom front and a small window for the PiTFT, as in the renders and layout above. Works like: the sensing side works on the Pi (proximity, gesture and touch tests above), and cat_feeder.py ties the proximity reading to the speaker, the PiTFT and the servo; the servo motion still needs a working supply on the Servo pHAT before the full feed cycle can be filmed. Acts like: the cat walks up and lowers its head into the bowl, the feeder says "Dinner time!" and one portion drops in, with no button for the cat or the owner to press.
+Looks like: a laser-cut maple box (21 x 17 x 27 cm inside) with the hopper chimney on top, a cat window at the bottom front and a small window for the PiTFT, as in the renders and layout above. Works like and acts like are shown in one video: [https://youtube.com/shorts/npDkDsxskDA](https://youtube.com/shorts/npDkDsxskDA). Works like: when the proximity sensor is triggered, the servo turns the two-pocket rotor and one portion drops out; wood pieces stand in for kibble. Acts like: my hand stands in for the cat reaching the sensor, so the feeder answers the cat's approach with food, with no button for the cat or the owner to press.
 
 ---
 
