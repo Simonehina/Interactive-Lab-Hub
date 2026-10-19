@@ -308,6 +308,10 @@ Instead of cardboard I went straight to the MakerLAB machines. The rotor, housin
 
 ![Exploded view of the dispensing mechanism](feeder/images/exploded_mechanism.png)
 
+The real parts: the assembled box from the front, and the printed housing, rotor and end cap with the cut panels and the hopper tube.
+
+<img src="feeder/images/prototype_box.jpg" width="320"> <img src="feeder/images/prototype_parts.jpg" width="320">
+
 Before modelling I measured the servo by hand: the ears span 32 mm, the body is 12 mm thick, it stands 31 mm tall with the horn, and the shaft sits 5.1 mm from the near end of the body. That last number set where the cut-out in the printed housing goes. The electronics are the Pi 5 with the Mini PiTFT, the APDS-9960 and a USB webcam, and the Servo pHAT joins the same Qwiic chain because the PiTFT already uses the GPIO header. The panels were cut in Trotec Ruby after mapping the red lines to the Cut effect of the MakerLAB 3 mm wood material.
 
 <img src="feeder/images/servo_ms18.jpg" width="260"> <img src="feeder/images/electronics.jpg" width="260"> <img src="feeder/images/laser_ruby.jpg" width="360">
@@ -355,6 +359,10 @@ flowchart LR
 ```
 
 ![Where the parts sit inside the box](feeder/images/internal_layout.png)
+
+The wiring on the bench: the Pi 5 with the PiTFT, the Servo pHAT with the servo, the APDS-9960 and the MPR121 touch board, all on one Qwiic chain.
+
+<img src="feeder/images/system_wiring.jpg" width="560">
 
 I tested each part on the Pi before putting them together. All three boards show up on one Qwiic chain (APDS-9960 at 0x39, MPR121 at 0x5A, Servo pHAT at 0x40). The teacher's scripts worked for the capacitive pads (11 of 12 pads registered touches), for the gesture sensor (up, down, left and right were all recognised) and for the proximity readings below. In my first test the servo did not move: the Pi sent the commands and the Servo pHAT answered on I2C, but the servo rail gets its power only from the pHAT's USB-C port and the charger I first plugged in did not power the board. Once the pHAT had power the whole loop worked. In the video small wood pieces stand in for kibble and my hand takes the place of the cat: when my hand reaches the sensor, the rotor turns and a portion drops out.
 
@@ -541,6 +549,8 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Acts like": shows how a person would interact with the device
 
 Looks like: a laser-cut maple box (21 x 17 x 27 cm inside) with the hopper chimney on top, a cat window at the bottom front and a small window for the PiTFT, as in the renders and layout above. Works like and acts like are shown in one video: [https://youtube.com/shorts/npDkDsxskDA](https://youtube.com/shorts/npDkDsxskDA). Works like: when the proximity sensor is triggered, the servo turns the two-pocket rotor and one portion drops out; wood pieces stand in for kibble. Acts like: my hand stands in for the cat reaching the sensor, so the feeder answers the cat's approach with food, with no button for the cat or the owner to press.
+
+<img src="feeder/images/looks_like.jpg" width="320">
 
 ---
 
