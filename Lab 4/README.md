@@ -304,7 +304,7 @@ As you develop your Feast Automata concept, consider where the sensor and actuat
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
-![Five physical arrangements for the cat feeder](feeder/images/five_sketches.png)
+<img src="feeder/images/sketch1.png" width="300"> <img src="feeder/images/sketch2.png" width="300"> <img src="feeder/images/sketch3.png" width="300"> <img src="feeder/images/sketch4.png" width="300"> <img src="feeder/images/sketch5.png" width="300">
 
 I explored five ways to turn one 9 g servo (a Miuzei MS18, which only swings about 180 degrees and cannot spin all the way around) into a cat feeder: a flap gate under the hopper, a sliding drawer pushed by a crank, a two-pocket rotor that swings between 0 and 180 degrees, a ratchet with a rubber-band pawl that turns an auger one notch per swing, and a tipping cup next to a coaster that senses the bowl.
 
