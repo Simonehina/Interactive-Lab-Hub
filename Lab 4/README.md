@@ -112,13 +112,15 @@ Option 3: (preferred) use the Github.com interface to update the changes.
 
 </details>
 
----
+On the Pi I pulled the Lab 4 folder, made the .venv, installed requirements2025.txt and ran blinkatest.py, which printed Hello, blinka! with Digital IO, I2C and SPI all ok.
 
-<details>
-<summary>Instructions</summary>
+---
 
 ### Part A
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
+
+<details>
+<summary>Instructions</summary>
 
 We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/adafruit-mpr121-gator) in your kit. It's one of the most flexible input devices we are able to provide. At boot, it measures the capacitance on each of the 12 contacts. Whenever that capacitance changes, it considers it a user touch. You can attach any conductive material. In your kit, you have copper tape that will work well, but don't limit yourself! In the example below, we use Twizzlers--you should pick your own objects.
 
@@ -138,10 +140,17 @@ Twizzler 10 touched!
 Twizzler 6 touched!
 ```
 
+</details>
+
+I connected the MPR121 to the same Qwiic chain as the other boards and ran cap_test.py, touching the pads with my fingers. It printed a touch for 11 of the 12 pads (0 to 3 and 5 to 11); pad 4 did not register in that run.
+
 ---
 
 ### Part B
 ### More sensors
+
+<details>
+<summary>Instructions</summary>
 
 #### Light/Proximity/Gesture sensor (APDS-9960)
 
@@ -216,10 +225,17 @@ Connect it to your pi with Qwiic connector and try running the example script to
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
 
+</details>
+
+With the APDS-9960, proximity_test.py read 0 to 5 with nothing in front, about 10 to 25 with my hand about 5 cm away, and 60 to 255 at about 2 cm. gesture_test.py recognised up, down, left and right swipes. color_test.py printed red 6, green 4, blue 3 and clear 11 (about 2610 K and 2.2 lux in the room) and then stopped with a division-by-zero error when all four channels read 0 with the sensor covered. I did not try the rotary encoder, joystick or distance sensor, because the feeder only needs the APDS-9960.
+
 ---
 
 ### Part C
 ### Servo Actuation
+
+<details>
+<summary>Instructions</summary>
 
 Now that you have explored several forms of sensing, add physical output by learning to control a servo motor. Complete the Servo pHAT setup and basic servo test before beginning your interaction design.
 
@@ -245,6 +261,8 @@ For more details and advanced usage, see the [official SparkFun Servo pHAT docum
 A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
 
 </details>
+
+The Servo pHAT sits on the same Qwiic chain (address 0x40) because the PiTFT already uses the GPIO header, and the MS18 is on channel 0. When I ran pi_servo_hat_test.py the servo did not move at first, because the pHAT was not getting power through its USB-C port; once it had its own supply the servo moved. For the feeder I drive it with pulse widths of 0.5 to 2.5 ms so it can cover the full 0 to 180 degrees the rotor needs.
 
 ---
 
