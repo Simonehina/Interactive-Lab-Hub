@@ -8,6 +8,9 @@ Team Members: Simin Xu - sx333 - Simonehina
 Project name: Two-Pocket Cat Feeder
 
 
+<details>
+<summary>Instructions</summary>
+
 For lab this week, we focus on both sensing and actuation, bringing new modes of input and output into your devices, while also prototyping the physical structure and overall look of the device. You will consider how the physical form supports sensing and actuation, and how these elements come together to shape the interaction and aesthetics of the device.
 
 ---
@@ -107,7 +110,12 @@ Option 3: (preferred) use the Github.com interface to update the changes.
 * [Gear Template Generator](https://woodgears.ca/gear_cutting/template.html) can help you prototype simple gear mechanisms for translating servo motion into physical movement.
 
 
+</details>
+
 ---
+
+<details>
+<summary>Instructions</summary>
 
 ### Part A
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
@@ -236,10 +244,15 @@ python pi_servo_hat_test.py
 For more details and advanced usage, see the [official SparkFun Servo pHAT documentation](https://learn.sparkfun.com/tutorials/pi-servo-phat-v2-hookup-guide/all#resources-and-going-further).
 A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
 
+</details>
+
 ---
 
 ### Part D
 ### Physical Interaction Design: Feast Automata
+
+<details>
+<summary>Instructions</summary>
 
 **Feast Automata:** build a device that **transforms ordinary dining rituals into playful physical interactions.** Begin with a familiar experience around eating, drinking, cooking, serving, or sharing food, and explore how sensing and actuation might augment, exaggerate, automate, or reinterpret your dining experience.
 
@@ -268,6 +281,8 @@ Your kit includes these [SparkFun Qwiic OLED screens](https://www.sparkfun.com/p
 
 
 As you develop your Feast Automata concept, consider where the sensor and actuator need to be placed, what parts move, how electronics are housed, and how the overall form and aesthetics support the interaction.
+
+</details>
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
@@ -307,6 +322,9 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 
 ### Part E
 
+<details>
+<summary>Instructions</summary>
+
 #### Build & Integrate: Sensing + Actuation
 
 For Part 2, build the Feast Automata interaction you developed in Part D by connecting sensing/input to physical actuation.
@@ -316,6 +334,8 @@ For Part 2, build the Feast Automata interaction you developed in Part D by conn
 - Use servo-based physical actuation.
 - Connect sensing and actuation into a meaningful interaction around eating, drinking, cooking, serving, or sharing food.
 - Additional inputs, displays, LEDs, buttons, or other outputs are optional extensions.
+
+</details>
 
 **Document your system with:**
 - Code for your sensing + actuation prototype
@@ -349,6 +369,9 @@ The biggest lesson was that the actuator decides the mechanism. I first thought 
 The APDS-9960 faces down from the shelf above the bowl, so it reacts when the cat lowers its head to eat rather than when someone walks past. The reading has to stay above the threshold for 0.5 s before anything moves, there is a 60-second cooldown between portions, and the rotor moves 2 degrees every 20 ms so kibble is pushed aside instead of crushed. With the teacher's proximity_test.py the APDS-9960 read 0 to 5 with nothing in front, about 10 to 25 with a hand about 5 cm away, and 60 to 255 at about 2 cm, so it only reacts to things that are very close. That is why it sits right above the bowl, and why I set the threshold to 12 and only re-arm the feeder once the reading falls below 6.
 
 Iterate on the sensing, movement, and physical form, and document what you discover.
+
+<details>
+<summary>Instructions</summary>
 
 See encoder_accel_servo_dashboard.py in the Lab 4 folder for an optional example of chaining together three devices.
 
@@ -497,6 +520,8 @@ python gpio_expander.py
 
 This is a playful way to visualize how the expander works, but the same technique applies if you wanted to prototype buttons, switches, or other interaction elements. It’s a lightweight, flexible addition to your prototyping toolkit.
 
+</details>
+
 ---
 
 
@@ -519,6 +544,9 @@ Looks like: a laser-cut maple box (21 x 17 x 27 cm inside) with the hopper chimn
 
 ## Deliverables \& Submission for Lab 4
 
+<details>
+<summary>Instructions</summary>
+
 The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do.
@@ -528,3 +556,5 @@ For submission, the readme.md page for this lab should be edited to include the 
 * Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
 * Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
 * Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
+
+</details>
