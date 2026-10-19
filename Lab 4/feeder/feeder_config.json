@@ -1,0 +1,10 @@
+{
+  "end_a": 10,
+  "end_b": 170,
+  "threshold": 30,
+  "hold_s": 0.5,
+  "cooldown_s": 60,
+  "max_per_day": 8,
+  "step_deg": 2,
+  "step_delay": 0.02
+}

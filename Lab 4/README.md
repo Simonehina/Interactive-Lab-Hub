@@ -5,7 +5,7 @@
 ## Lab Overview
 Team Members: Simin Xu - sx333 - Simonehina
 
-Project name: <name>
+Project name: Two-Pocket Cat Feeder
 
 
 For lab this week, we focus on both sensing and actuation, bringing new modes of input and output into your devices, while also prototyping the physical structure and overall look of the device. You will consider how the physical form supports sensing and actuation, and how these elements come together to shape the interaction and aesthetics of the device.
@@ -271,13 +271,29 @@ As you develop your Feast Automata concept, consider where the sensor and actuat
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
+![Five physical arrangements for the cat feeder](feeder/images/five_sketches.png)
+
+I explored five ways to turn one 9 g servo (a Miuzei MS18, which only swings about 180 degrees and cannot spin all the way around) into a cat feeder: a flap gate under the hopper, a sliding drawer pushed by a crank, a two-pocket rotor that swings between 0 and 180 degrees, a ratchet with a rubber-band pawl that turns an auger one notch per swing, and a tipping cup next to a coaster that senses the bowl.
+
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
 
+The sketches raised four questions. How far does the MS18 really turn through the Servo pHAT, and is that enough for the mechanism? Will kibble get pinched between a moving part and the housing and stall such a small servo? How much food comes out per movement, and is it the same every time? Where can the proximity sensor sit so it sees the cat at the bowl and not the person refilling the hopper? To answer them I measured the servo (the shaft sits 5.1 mm from the end of the body and the ears span 32 mm), printed the rotor and housing to check the clearance with real kibble, set the swing range in code, and read APDS-9960 values with and without something in front of it.
+
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
+
+I picked the two-pocket rotor. It has one pocket on each side, so when it turns 180 degrees the full pocket empties into the bowl while the empty one fills under the hopper, and turning back does the same. Every stroke gives one fixed portion of about 8 mL (roughly 3 to 4 g of kibble), there is no wasted return stroke, the hopper above the rotor cannot leak when it is full, and it works inside the servo's limited swing, so I did not need a continuous-rotation motor or a rubber band. It also splits cleanly into a 3D-printed mechanism and a laser-cut box.
 
 Build a cardboard or other low-fidelity physical prototype of your design.
 
 **\*\*\*Document your rough prototype with photos and/or video.\*\*\***
+
+Instead of cardboard I went straight to the MakerLAB machines. The rotor, housing and end cap were printed on a Bambu printer (files in [feeder/stl](feeder/stl), modelled in [feeder/cad/feeder_parts.py](feeder/cad/feeder_parts.py)), and the box, shelf and hopper were laser cut from 3 mm maple plywood on the Trotec (files in [feeder/laser](feeder/laser), generated with Boxes.py by [feeder/cad/feeder_box.py](feeder/cad/feeder_box.py)). The renders show the planned assembly.
+
+![Render of the feeder box and its inside](feeder/images/feeder_render.png)
+
+![Exploded view of the dispensing mechanism](feeder/images/exploded_mechanism.png)
+
+TODO: add photos of the printed parts and the cut panels.
 
 ---
 
@@ -305,11 +321,30 @@ For Part 2, build the Feast Automata interaction you developed in Part D by conn
 - A simple interaction diagram or sketch showing how sensing and actuation are connected
 - Written reflection: What did you learn about connecting sensing, movement, and physical form? What was fun, surprising, or challenging?
 
+The code is [feeder/cat_feeder.py](feeder/cat_feeder.py); [feeder/servo_calibrate.py](feeder/servo_calibrate.py) is run first to find the two rotor end angles. When the APDS-9960 reading stays above the threshold for half a second, the Pi says "Dinner time!" through the USB speaker, shows Feeding on the PiTFT, swings the rotor slowly from one end to the other so one pocket drops into the bowl, logs the feed, and can record a 10-second clip with the webcam. A cooldown and a daily limit keep the cat from emptying the hopper.
+
+```mermaid
+flowchart LR
+  A[APDS-9960 proximity] --> P[Raspberry Pi 5]
+  P --> SPK[USB speaker: Dinner time]
+  P --> SCR[PiTFT: Ready / Feeding / Done]
+  P --> HAT[Servo pHAT ch 0] --> SV[MS18 servo] --> R[two-pocket rotor] --> BOWL[one portion in the bowl]
+  P --> CAM[USB webcam: 10 s clip]
+```
+
+![Where the parts sit inside the box](feeder/images/internal_layout.png)
+
+TODO: add the video of the working prototype.
+
+The biggest lesson was that the actuator decides the mechanism. I first thought a feeder needed a motor that keeps spinning, and wondered whether a rubber band could help the servo, but designing around the 180-degree swing gave a simpler rotor that dispenses on both strokes. Physical details mattered more than I expected: one measurement of the servo shaft position decided whether the printed mount would line up, and the laser cutter only cut once the red lines were mapped to the Cut setting in Ruby and the bed was focused. TODO: add what changed after testing with real kibble and the cat.
+
 **Questions to consider:**
 - How does your chosen sensor or input shape the physical response?
 - How does the physical arrangement of the sensor and actuator change the interaction?
 - What thresholds, timing, or movement patterns make the interaction feel clear or playful?
 - What changes when you adjust the sensor placement or servo motion?
+
+The APDS-9960 faces down from the shelf above the bowl, so it reacts when the cat lowers its head to eat rather than when someone walks past. The reading has to stay above the threshold for 0.5 s before anything moves, there is a 60-second cooldown between portions, and the rotor moves 2 degrees every 20 ms so kibble is pushed aside instead of crushed. TODO: add the measured threshold and how placement changed it.
 
 Iterate on the sensing, movement, and physical form, and document what you discover.
 
@@ -475,6 +510,8 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+Looks like: a laser-cut maple box (21 x 17 x 27 cm inside) with the hopper chimney on top, a cat window at the bottom front and a small window for the PiTFT, as in the renders and layout above. Works like: TODO video of one full feed cycle, from the sensor reading to kibble in the bowl. Acts like: TODO video of the cat (or a hand standing in for the cat) coming to the bowl and getting a portion.
 
 ---
 
