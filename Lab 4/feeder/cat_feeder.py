@@ -34,7 +34,7 @@ SERVO_CH = 0
 DEFAULTS = {
     "end_a": 10,         # rotor end angles from servo_calibrate.py
     "end_b": 170,
-    "threshold": 30,     # APDS proximity (0-255) that counts as "cat at the bowl"
+    "threshold": 12,     # APDS proximity (0-255) that counts as "cat at the bowl"
     "hold_s": 0.5,       # proximity must stay above threshold this long
     "cooldown_s": 60,    # minimum time between two portions
     "max_per_day": 8,
@@ -177,7 +177,7 @@ def main():
                     last_feed, armed = time.monotonic(), False
             else:
                 above_since = None
-                if p < cfg["threshold"] - 10:      # cat left: next visit can trigger again
+                if p < cfg["threshold"] / 2:       # cat left: next visit can trigger again
                     armed = True
             time.sleep(0.05)
     except KeyboardInterrupt:

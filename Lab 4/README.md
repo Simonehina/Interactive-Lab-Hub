@@ -293,7 +293,9 @@ Instead of cardboard I went straight to the MakerLAB machines. The rotor, housin
 
 ![Exploded view of the dispensing mechanism](feeder/images/exploded_mechanism.png)
 
-TODO: add photos of the printed parts and the cut panels.
+Before modelling I measured the servo by hand: the ears span 32 mm, the body is 12 mm thick, it stands 31 mm tall with the horn, and the shaft sits 5.1 mm from the near end of the body. That last number set where the cut-out in the printed housing goes. The electronics are the Pi 5 with the Mini PiTFT, the APDS-9960 and a USB webcam, and the Servo pHAT joins the same Qwiic chain because the PiTFT already uses the GPIO header. The panels were cut in Trotec Ruby after mapping the red lines to the Cut effect of the MakerLAB 3 mm wood material.
+
+<img src="feeder/images/servo_ms18.jpg" width="260"> <img src="feeder/images/electronics.jpg" width="260"> <img src="feeder/images/laser_ruby.jpg" width="360">
 
 ---
 
@@ -334,9 +336,9 @@ flowchart LR
 
 ![Where the parts sit inside the box](feeder/images/internal_layout.png)
 
-TODO: add the video of the working prototype.
+I tested each part on the Pi before putting them together. All three boards show up on one Qwiic chain (APDS-9960 at 0x39, MPR121 at 0x5A, Servo pHAT at 0x40). The teacher's scripts worked for the capacitive pads (11 of 12 pads registered touches), for the gesture sensor (up, down, left and right were all recognised) and for the proximity readings below. The servo did not move yet: the Pi sends the commands and the Servo pHAT answers on I2C, but the servo rail gets its power only from the pHAT's USB-C port, and the USB-C charger I plugged in did not power the board, so the next step is a plain USB-A supply before filming the feeder in action.
 
-The biggest lesson was that the actuator decides the mechanism. I first thought a feeder needed a motor that keeps spinning, and wondered whether a rubber band could help the servo, but designing around the 180-degree swing gave a simpler rotor that dispenses on both strokes. Physical details mattered more than I expected: one measurement of the servo shaft position decided whether the printed mount would line up, and the laser cutter only cut once the red lines were mapped to the Cut setting in Ruby and the bed was focused. TODO: add what changed after testing with real kibble and the cat.
+The biggest lesson was that the actuator decides the mechanism. I first thought a feeder needed a motor that keeps spinning, and wondered whether a rubber band could help the servo, but designing around the 180-degree swing gave a simpler rotor that dispenses on both strokes. Physical details mattered more than I expected: one measurement of the servo shaft position decided whether the printed mount would line up, and the laser cutter only cut once the red lines were mapped to the Cut setting in Ruby and the bed was focused. The most surprising part was power: everything looked connected and the code ran without errors, yet nothing moved, because a servo needs its own supply and a smart USB-C charger will not always feed a small board.
 
 **Questions to consider:**
 - How does your chosen sensor or input shape the physical response?
@@ -344,7 +346,7 @@ The biggest lesson was that the actuator decides the mechanism. I first thought 
 - What thresholds, timing, or movement patterns make the interaction feel clear or playful?
 - What changes when you adjust the sensor placement or servo motion?
 
-The APDS-9960 faces down from the shelf above the bowl, so it reacts when the cat lowers its head to eat rather than when someone walks past. The reading has to stay above the threshold for 0.5 s before anything moves, there is a 60-second cooldown between portions, and the rotor moves 2 degrees every 20 ms so kibble is pushed aside instead of crushed. TODO: add the measured threshold and how placement changed it.
+The APDS-9960 faces down from the shelf above the bowl, so it reacts when the cat lowers its head to eat rather than when someone walks past. The reading has to stay above the threshold for 0.5 s before anything moves, there is a 60-second cooldown between portions, and the rotor moves 2 degrees every 20 ms so kibble is pushed aside instead of crushed. With the teacher's proximity_test.py the APDS-9960 read 0 to 5 with nothing in front, about 10 to 25 with a hand about 5 cm away, and 60 to 255 at about 2 cm, so it only reacts to things that are very close. That is why it sits right above the bowl, and why I set the threshold to 12 and only re-arm the feeder once the reading falls below 6.
 
 Iterate on the sensing, movement, and physical form, and document what you discover.
 
@@ -511,7 +513,7 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
-Looks like: a laser-cut maple box (21 x 17 x 27 cm inside) with the hopper chimney on top, a cat window at the bottom front and a small window for the PiTFT, as in the renders and layout above. Works like: TODO video of one full feed cycle, from the sensor reading to kibble in the bowl. Acts like: TODO video of the cat (or a hand standing in for the cat) coming to the bowl and getting a portion.
+Looks like: a laser-cut maple box (21 x 17 x 27 cm inside) with the hopper chimney on top, a cat window at the bottom front and a small window for the PiTFT, as in the renders and layout above. Works like: the sensing side works on the Pi (proximity, gesture and touch tests above), and cat_feeder.py ties the proximity reading to the speaker, the PiTFT and the servo; the servo motion still needs a working supply on the Servo pHAT before the full feed cycle can be filmed. Acts like: the cat walks up and lowers its head into the bowl, the feeder says "Dinner time!" and one portion drops in, with no button for the cat or the owner to press.
 
 ---
 

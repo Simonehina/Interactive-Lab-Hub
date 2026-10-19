@@ -1,7 +1,7 @@
 {
   "end_a": 10,
   "end_b": 170,
-  "threshold": 30,
+  "threshold": 12,
   "hold_s": 0.5,
   "cooldown_s": 60,
   "max_per_day": 8,
