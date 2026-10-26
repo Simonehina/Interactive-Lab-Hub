@@ -1,0 +1,16 @@
+Loading yolo26n_ncnn_model for NCNN inference...
+19:15:06 1 person(s) at right/close
+19:15:19 2 person(s) at right/close, right/close
+19:15:20 1 person(s) at right/close
+19:15:22 2 person(s) at right/close, right/close
+19:15:23 1 person(s) at right/close
+19:15:40 1 person(s) at center/close
+19:15:44 1 person(s) at right/close
+19:15:45 1 person(s) at right/far
+19:15:46 nobody
+
+9 lines saved to watch_log.txt
+asking Qwen...
+
+Qwen (16.1 s):
+There were 3 people present throughout the 61-second observation. They moved from being "at right/close" to "at center/close," then to "at right/far," and finally disappeared ("nobody"). No significant change occurred in their location or behavior during this period.

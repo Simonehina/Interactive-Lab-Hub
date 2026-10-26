@@ -1,6 +1,6 @@
 # Observant Systems: Overnight Sensation
 
-**Team:** Sleep bot for pet
+**Team:** Solo
 
 **Members:** Simin Xu (sx333, Simonehina)
 
@@ -342,8 +342,23 @@ A 0.8B model is slow and sometimes wrong. It will invent events that are not in 
 \*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
 
 <details>
-  Q&A here
-  <mark>TODO (needs the Pi): paste three questions, Qwen's answers and how long each took; ask one of them again with `qwen3:0.6b` and compare. Write the questions and the comparison yourself (rubric: No AI assistance).</mark>
+<summary>Q&A</summary>
+
+| Question | Answer from `qwen3.5:0.8b` | Time |
+|---|---|---|
+| How many feet does a person have? | A person has two feet in total. | 1.3 s |
+| How many campuses does Cornell have? | Cornell University has two campuses: one is in New York City, and the other is in Pennsylvania. | 4.0 s |
+| Has Cornell had any negative news recently? | As of 2026, Cornell University has no public negative news. As a top private research university in the US, it has always kept a very high academic reputation and a stable student body. If you are asking about another institution or a specific event, please give more details so I can look up the latest information for you. | 9.8 s |
+
+**Comparison with `qwen3:0.6b`** (question 2: How many campuses does Cornell have?)
+
+| Model | Answer | Time |
+|---|---|---|
+| `qwen3.5:0.8b` | Cornell University has two campuses: one is in New York City, and the other is in Pennsylvania. | 4.0 s |
+| `qwen3:0.6b` | Cornell University has several campuses, including the Columbia campus in New York City (Cornell University at Columbia) and Cornell University in New York State (Cornell University at New York State). | 1.8 s |
+
+For this question, the answer from `qwen3:0.6b` looks a bit smarter.
+
 </details>
 
 
@@ -383,6 +398,34 @@ One person came in from the right, moved close to the camera, and left after abo
 ```
 
 </details>
+
+I ran `python yolo_to_qwen.py` on the Pi for 60 seconds. Only one person (me) was in front of the camera. The full output is in [logs/partE_run1.log](logs/partE_run1.log).
+
+The log YOLO wrote (`watch_log.txt`):
+
+```
+19:15:06 1 person(s) at right/close
+19:15:19 2 person(s) at right/close, right/close
+19:15:20 1 person(s) at right/close
+19:15:22 2 person(s) at right/close, right/close
+19:15:23 1 person(s) at right/close
+19:15:40 1 person(s) at center/close
+19:15:44 1 person(s) at right/close
+19:15:45 1 person(s) at right/far
+19:15:46 nobody
+```
+
+Default question: "How many people were there, what were they doing, and did anything change?"
+
+Qwen (`qwen3.5:0.8b`, 16.1 s):
+
+> There were 3 people present throughout the 61-second observation. They moved from being "at right/close" to "at center/close," then to "at right/far," and finally disappeared ("nobody"). No significant change occurred in their location or behavior during this period.
+
+Compared with what happened:
+
+- There was only one person. At 19:15:19 and 19:15:22, YOLO boxed the same person twice for about one second, so the log says "2 person(s)".
+- The log never says 3 people, but Qwen answered "3 people present throughout".
+- Qwen listed changes in position, then said that no significant change occurred.
 
 ---
 
