@@ -1,6 +1,6 @@
 # Observant Systems: Overnight Sensation
 
-**Team:** <mark>TODO：一个人做就写 Solo；有队友就写队名。</mark>
+**Team:** Solo
 
 **Members:** Simin Xu (sx333, Simonehina)
 
