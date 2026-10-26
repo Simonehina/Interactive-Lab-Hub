@@ -1,10 +1,10 @@
 # Observant Systems: Overnight Sensation
 
-**Team:** Solo
+**Team:** <mark>TODO: write Solo, or your team name and teammates.</mark>
 
 **Members:** Simin Xu (sx333, Simonehina)
 
-**Project name:** <mark>TODO：等 Part 2 的想法定下来再填。</mark>
+**Project name:** <mark>TODO: fill in once the Part 2 idea is decided.</mark>
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
@@ -179,7 +179,7 @@ pi@raspberrypi:~ $ ollama list
 
 \*\*\***Include a screenshot of `ollama list` showing your models.**\*\*\*
 
-<mark>TODO（需要 Pi）：放 `ollama list` 的截图。</mark>
+![ollama list on my Pi](images/ollama_list.png)
 
 
 ## Part B. 
@@ -211,9 +211,55 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 
 \*\*\***Include a short video or screenshots of your experiments with the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
 
-<mark>TODO（需要 Pi）：放人物检测实验的视频或截图。</mark>
+I ran `yolo_person.py` on the Pi and watched the window through Raspberry Pi Connect screen sharing. The frame-by-frame readings of every run are in [logs/](logs/).
 
-<mark>TODO（需要 Pi；你自己写，评分标准：No AI assistance）：真的跑过之后，写 3 个出错的情况和你认为的原因。</mark>
+**Default (`python yolo_person.py`, conf 0.4)**
+
+- With two people in the frame, both were detected, and both detections were correct.
+- With only my shoulders in the frame, I was detected on and off, at 0.45–0.56.
+- With my face in the frame, the confidence was 0.90.
+- A sculpture of a person shown on my phone was also detected as a person, with a high confidence of about 0.65.
+- Anime characters and photos of people on my phone were also detected: the two photos at 0.48 and 0.71, the anime character at 0.61.
+
+| Sculpture on my phone | Photos on my phone | Anime character on my phone |
+|---|---|---|
+| ![sculpture](images/partB_phone_sculpture.webp) | ![photos](images/partB_phone_photos.webp) | ![anime](images/partB_phone_anime.webp) |
+
+**`--conf 0.2`**
+
+- Even a small part of my hand was detected as a person: my palm filling the frame at 0.72, my fingers at 0.22. In a dark frame with only my neck, hair and collar, I was detected at 0.35.
+
+| Palm | Fingers | Neck and collar |
+|---|---|---|
+| ![palm](images/partB_conf02_palm.webp) | ![fingers](images/partB_conf02_fingers.webp) | ![neck](images/partB_conf02_neck.webp) |
+
+**`--conf 0.7`**
+
+- Many things were no longer detected. The photo of a man was detected only on and off, at about 0.70. The sculpture was no longer detected.
+
+| Palm, no box | Palm and face, 0.72 | Sculpture not detected |
+|---|---|---|
+| ![no box](images/partB_conf07_palm_nobox.webp) | ![face](images/partB_conf07_palm_face.webp) | ![sculpture](images/partB_conf07_sculpture.webp) |
+
+| Photo, no box | Photo, 0.70 |
+|---|---|
+| ![photo no box](images/partB_conf07_photo_nobox.webp) | ![photo 0.70](images/partB_conf07_photo_070.webp) |
+
+**`--all`**
+
+- On my first run only "person" appeared. On my second run I held objects up to the camera: my phone was labeled cell phone (0.88), a cardboard box was labeled laptop (0.83), and a plastic milk-tea cup was labeled bottle (0.45). Over the whole second run (about 2,470 frames) it also reported tie, bird, cat, skateboard, remote, cup, vase, umbrella, toothbrush, tennis racket, teddy bear, fork and bed.
+- The box was probably labeled a laptop because its shape looks like a laptop; it was actually a cardboard box.
+- With more things it can recognize, the steps of recognizing and checking get longer, there are more possibilities, and it is more likely to make mistakes and be inaccurate. (Note from Claude: YOLO actually computes all 80 classes on every frame. The default setting keeps only "person", and `--all` shows the other classes that were filtered out before, so those wrong labels became visible.)
+
+| Phone → cell phone | Cardboard box → laptop | Milk-tea cup → bottle |
+|---|---|---|
+| ![phone](images/partB_all_phone.webp) | ![box](images/partB_all_box_laptop.webp) | ![cup](images/partB_all_cup_bottle.webp) |
+
+**`--headless`**
+
+- No window, only one printed line per frame, such as `person at x=358, height=439 px, conf=0.46 | 1 object(s)`. The readings are in [logs/partB_run6_headless.log](logs/partB_run6_headless.log).
+
+<mark>TODO (write this yourself; rubric: No AI assistance): pick three situations above where it did not see you or saw a person who was not there, and write the cause you think for each.</mark>
 
 
 
@@ -248,11 +294,16 @@ Consider how you might use this position based approach to create an interaction
 
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
 
-<mark>TODO（需要 Pi）：放手势 demo 的截图或短视频。</mark>
+| Pinch: 0 % | Pinch: 14 % | Quiet Coyote |
+|---|---|---|
+| ![pinch 0%](images/partC_pinch_0.webp) | ![pinch 14%](images/partC_pinch_14.webp) | ![quiet coyote](images/partC_quiet_coyote.webp) |
 
-I would use it on a bus: when the bus is reversing, a camera at the back would recognize a person or a cat behind it.
+MediaPipe tracks the user's hand gestures and reads them as commands. When a deaf or mute user cannot speak, gestures become an efficient way to give instructions.
 
-<mark>TODO（你自己补一句，评分标准：No AI assistance）：Part C 问的是脸 / 手 / 身体姿态追踪具体怎么用。MediaPipe 只追踪人，不追踪猫。</mark>
+- **Before bed:** the user makes an OK 👌 gesture to tell the device "tonight is yours". Why a gesture instead of a button or voice: deaf or mute users may not be able to speak, and a button is inconvenient for giving commands from a distance. A gesture lets the user give a command while lying down, without getting close to the device.
+- **While asleep:** what the system watches can be seen from the person's hands and posture.
+- **When awake:** the user mutes the sound with a gesture, the Italian gesture of pinching all five fingertips together. The volume follows the earlier setting.
+- **When it goes wrong (Bellotti's Accident):** if a gesture is misrecognized, the way photos on a phone were recognized as people in Part B, the user may be confused.
 
 
 ## Part D. 
@@ -294,7 +345,7 @@ A 0.8B model is slow and sometimes wrong. It will invent events that are not in 
 
 <details>
   Q&A here
-  <mark>TODO（需要 Pi）：贴 3 个问题、回答和各自耗时；其中一个用 `qwen3:0.6b` 再问一次做对比。问题和对比你自己写（评分标准：No AI assistance）。</mark>
+  <mark>TODO (needs the Pi): paste three questions, Qwen's answers and how long each took; ask one of them again with `qwen3:0.6b` and compare. Write the questions and the comparison yourself (rubric: No AI assistance).</mark>
 </details>
 
 
@@ -373,15 +424,15 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
-<mark>TODO 想法：</mark>
+<mark>TODO Ideas:</mark>
 
-<mark>TODO 故事板第 1 格（睡前）：人怎么把今晚交给设备，设备怎么确认？</mark>
+<mark>TODO Storyboard panel 1 (before bed): how does the person hand the night over, and how does the device acknowledge it?</mark>
 
-<mark>TODO 故事板第 2 格（睡着时）：设备观察或处理什么？</mark>
+<mark>TODO Storyboard panel 2 (while asleep): what does the device watch or work through?</mark>
 
-<mark>TODO 故事板第 3 格（醒来）：人知道的那一件事是什么，用什么方式告诉他？</mark>
+<mark>TODO Storyboard panel 3 (when awake): what is the one thing the person learns, and in what medium?</mark>
 
-<mark>TODO Verplank 图（可选）：</mark>
+<mark>TODO Verplank diagram (optional):</mark>
 
 ## Prep for Part 2
 
@@ -394,7 +445,7 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
    **Put the feedback for your ideas here.**
 
-   <mark>TODO：课上同学给你的反馈。</mark>
+   <mark>TODO: feedback from classmates.</mark>
 
 <details>
 <summary>Instructions</summary>
@@ -407,7 +458,7 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Post your revised storyboard here.**\*\*\*
 
-<mark>TODO（Part 2）：修改后的故事板。</mark>
+<mark>TODO (Part 2): revised storyboard.</mark>
 
 ## Part G. 
 ### Design the interaction before
@@ -421,7 +472,7 @@ The hand-off: the person tells the device what to watch tonight, and the device 
 
 \*\*\***Describe the interaction before.**\*\*\*
 
-<mark>TODO（Part 2）：睡前交接的描述。</mark>
+<mark>TODO (Part 2): description of the bedtime hand-off.</mark>
 
 ## Part H. 
 ### Incorporate the observant system
@@ -442,7 +493,7 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
 
-<mark>TODO（Part 2）：系统运行时的截图或视频。</mark>
+<mark>TODO (Part 2): screenshots or videos of the running system.</mark>
 
 ## Part I. 
 ### Design the interaction after
@@ -475,7 +526,7 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
-<mark>TODO（Part 2）：完整系统的短视频。</mark>
+<mark>TODO (Part 2): short video of the whole system.</mark>
 
 <details>
 <summary>Instructions</summary>
