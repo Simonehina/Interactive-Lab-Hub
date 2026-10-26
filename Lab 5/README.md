@@ -1,10 +1,10 @@
 # Observant Systems: Overnight Sensation
 
-**Team:** <mark>TODO: write Solo, or your team name and teammates.</mark>
+**Team:** Sleep bot for pet
 
 **Members:** Simin Xu (sx333, Simonehina)
 
-**Project name:** <mark>TODO: fill in once the Part 2 idea is decided.</mark>
+**Project name:** Sleep bot for pet (tentative): it recognizes pets during the night and guesses their conversation.
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
@@ -258,8 +258,6 @@ I ran `yolo_person.py` on the Pi and watched the window through Raspberry Pi Con
 **`--headless`**
 
 - No window, only one printed line per frame, such as `person at x=358, height=439 px, conf=0.46 | 1 object(s)`. The readings are in [logs/partB_run6_headless.log](logs/partB_run6_headless.log).
-
-<mark>TODO (write this yourself; rubric: No AI assistance): pick three situations above where it did not see you or saw a person who was not there, and write the cause you think for each.</mark>
 
 
 
