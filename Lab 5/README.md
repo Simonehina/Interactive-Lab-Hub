@@ -181,6 +181,10 @@ pi@raspberrypi:~ $ ollama list
 
 ![ollama list on my Pi](images/ollama_list.png)
 
+YOLO test on `bus.jpg`: 4 persons and 1 bus detected.
+
+![bus.jpg with YOLO boxes](images/partA_bus_predict.jpg)
+
 
 ## Part B. 
 ### See: recognize people in real time with YOLO
