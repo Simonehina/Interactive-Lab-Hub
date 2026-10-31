@@ -1,10 +1,10 @@
 # Observant Systems: Overnight Sensation
 
-**Team:** Solo
+**Team:** Part 1: Solo (Simin Xu). Part 2: Simin Xu and Zhimeng Zhang.
 
-**Members:** Simin Xu (sx333, Simonehina)
+**Members:** Simin Xu (sx333, Simonehina), Zhimeng Zhang (zz979, Flora130)
 
-**Project name:** Sleep bot for pet (tentative): it recognizes pets during the night and guesses their conversation.
+**Project name:** Sleep bot for pet: it recognizes pets during the night and guesses their conversation.
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
@@ -95,6 +95,8 @@ This readme.md page in your own repository should be edited to include the work 
 ---
 
 # Part 1
+
+Part 1 was done and written by me (Simin Xu) on my own.
 
 ## Part A. 
 ### Set up your Pi for on-device AI
@@ -435,6 +437,8 @@ Compared with what happened:
 
 # Lab 5 Part 2: Overnight Sensation
 
+Part 2 is done and written together by Simin Xu and Zhimeng Zhang.
+
 <details>
 <summary>Instructions</summary>
 
@@ -469,7 +473,19 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
-<mark>TODO Ideas:</mark>
+**How the idea developed**
+
+My own ideas first (Simin):
+
+1. A doorbell for blind people: when someone rings the doorbell, the device recognizes what is outside and tells the user by voice.
+2. A camera at the back of a bus: while the bus is reversing, it recognizes people or cats behind it.
+3. Sleep bot for pet: it recognizes pets during the night and guesses their conversation.
+
+The current plan, discussed with Zhimeng:
+
+4. Sleep monitoring at night: whether the person moved, and what their sleeping posture is. From Part 1 (Part C), different hand gestures play different music.
+
+After comparing the options, we chose idea 3, Sleep bot for pet.
 
 <mark>TODO Storyboard panel 1 (before bed): how does the person hand the night over, and how does the device acknowledge it?</mark>
 
@@ -517,7 +533,15 @@ The hand-off: the person tells the device what to watch tonight, and the device 
 
 \*\*\***Describe the interaction before.**\*\*\*
 
-<mark>TODO (Part 2): description of the bedtime hand-off.</mark>
+The hand-off uses the OK 👌 gesture from Simin's Part C answer: a gesture lets the user hand the night over while lying down, without getting close to the device.
+
+How it works ([bedtime.py](bedtime.py)), run inside tmux as the README asks:
+
+1. `tmux new -s night`, then `python bedtime.py` (add `--show` for a window on the Pi desktop).
+2. The camera waits for an OK sign: thumb tip touching index tip while the middle, ring and pinky fingers stay straight. This is a rule over MediaPipe's 21 hand landmarks, like the gestures in `hand_pose.py`.
+3. The sign has to be held for 15 frames in a row (about a second), so a hand passing by does not start the night.
+4. The device acknowledges with "Good night. I will watch for your pet until morning." in the terminal, "Good night" in the window with `--show`, or out loud with `--speak` (off by default).
+5. It writes the hand-off time into `night_log.jsonl` and starts the night shift, `overnight.py --all`.
 
 ## Part H. 
 ### Incorporate the observant system
@@ -538,7 +562,21 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
 
-<mark>TODO (Part 2): screenshots or videos of the running system.</mark>
+We changed `interpret()` in [yolo_to_qwen.py](yolo_to_qwen.py) so cats and dogs get a position, like people. A reading now looks like `nobody; 1 cat(s) at left/far`. `overnight.py` imports this function, so the night shift logs pets without other changes.
+
+**Fake nights.** As the README says, we first ran `overnight.py --all` for about 40 seconds and then `morning.py`. The second fake night (full output in [logs/partH_fake_night2.log](logs/partH_fake_night2.log); the first is in [logs/partH_fake_night1.log](logs/partH_fake_night1.log)):
+
+```
+{"t": "2026-10-31T18:47:48", "reading": "1 person(s) at left/close"}
+{"t": "2026-10-31T18:47:48", "alive": true}
+{"t": "2026-10-31T18:48:09", "reading": "1 person(s) at center/close"}
+{"t": "2026-10-31T18:48:19", "reading": "1 person(s) at left/close"}
+{"t": "2026-10-31T18:48:24", "reading": "1 person(s) at center/close"}
+```
+
+`morning.py` said one person was observed at close range the whole time, which matches the log. It also said "the camera shifted focus to the center of the room at 18:48:09"; the camera did not move, the person moved from left to center. No cat appeared in the log, and the reading never became "nobody".
+
+<mark>TODO: screenshots or video of the real night run.</mark>
 
 ## Part I. 
 ### Design the interaction after
@@ -556,6 +594,20 @@ Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from 
 
 </details>
 
+Our reveal is [morning_pet.py](morning_pet.py). It first lists what the camera actually saw of the pet, taken from the log. Then Qwen guesses what the pet might have been saying at up to three of those moments, in the pet's own voice. The output is labeled as a guess, and the prompt tells Qwen to use only times and places from the log. If the log never shows a pet, it says so and does not ask the model. `--speak` reads the guess aloud with espeak-ng.
+
+Run on the second fake night, which had no pet in it:
+
+```
+Watched 18:47 to 18:48
+4 changes, 0 with a pet in view, 1 heartbeats
+pet sightings per hour: {}
+
+Quiet night. The camera watched from 18:47 to 18:48 and did not see your pet.
+```
+
+<mark>TODO: the morning reveal from the real night.</mark>
+
 ## Final documentation
 
 <details>
@@ -572,6 +624,12 @@ Document all the prototypes and iterations you have designed and worked on. The 
 \*\*\***Include a short video of the whole system**\*\*\*
 
 <mark>TODO (Part 2): short video of the whole system.</mark>
+
+**Looks like:** <mark>TODO: photos of where the Pi and camera sit for the night (pointed at the pet's area, not the bed), at bedtime and in the morning.</mark>
+
+**Works like:** webcam → YOLO (`yolo26n`, all 80 classes, one look every 5 s) → `interpret()` writes one reading such as `nobody; 1 cat(s) at left/far` → only changes go into `night_log.jsonl` → in the morning `morning_pet.py` lists the pet sightings and asks Qwen (`qwen3.5:0.8b`) to guess what the pet said. <mark>TODO: an excerpt from the real night's log.</mark>
+
+**Acts like:** at bedtime the person holds up an OK sign and the device says good night; in the morning they get the times the pet was seen and a guessed line for a few of those moments. <mark>TODO: video.</mark>
 
 <details>
 <summary>Instructions</summary>

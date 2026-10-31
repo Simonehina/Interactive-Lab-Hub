@@ -1,0 +1,19 @@
+=== overnight.py --all (about 45 s)
+night shift started, Ctrl-C to stop
+night shift stopped
+=== night_log.jsonl
+{"t": "2026-10-31T18:47:48", "reading": "1 person(s) at left/close"}
+{"t": "2026-10-31T18:47:48", "alive": true}
+{"t": "2026-10-31T18:48:09", "reading": "1 person(s) at center/close"}
+{"t": "2026-10-31T18:48:19", "reading": "1 person(s) at left/close"}
+{"t": "2026-10-31T18:48:24", "reading": "1 person(s) at center/close"}
+=== snaps
+20261031-184748.jpg
+20261031-184809.jpg
+20261031-184819.jpg
+20261031-184824.jpg
+=== morning.py
+4 changes, 4 with something in view, 1 heartbeats, 18:47 to 18:48
+changes per hour: {'18:00': 4}
+
+The night watch device captured a brief, intense sequence of activity between 18:47 and 18:48, where only one person was observed at close range throughout this short interval. The most unusual moment occurred when the camera shifted focus to the center of the room at 18:48:09, suggesting a sudden change in activity or attention that left the device momentarily unaccounted for. Despite the brief duration of the observation, the consistent presence of one person at close range indicates a stable and focused environment during this specific hour.

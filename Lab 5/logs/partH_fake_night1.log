@@ -1,0 +1,13 @@
+=== overnight.py --all (about 40 s, stopped like Ctrl-C)
+night shift started, Ctrl-C to stop
+night shift stopped
+=== night_log.jsonl
+{"t": "2026-10-31T18:39:10", "reading": "1 person(s) at center/close"}
+{"t": "2026-10-31T18:39:10", "alive": true}
+=== snaps
+20261031-183910.jpg
+=== morning.py
+1 changes, 1 with something in view, 1 heartbeats, 18:39 to 18:39
+changes per hour: {'18:00': 1}
+
+The clock struck twelve, signaling the end of an hour-long shift that began at 18:39. As the camera watched from 18:39 to 18:39, only one person appeared at the center or close to it during this brief window of observation. It was a quiet moment where the night watch turned its attention to a single individual in the middle of the room, marking the transition from late evening into the early morning hours.

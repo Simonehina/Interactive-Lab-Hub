@@ -28,6 +28,7 @@ import requests
 from ultralytics import YOLO
 
 model = YOLO("yolo26n_ncnn_model")
+PETS = ("cat", "dog")                        # Sleep bot for pet: these get a position, like people
 
 
 def interpret(r):
@@ -37,18 +38,23 @@ def interpret(r):
     never sees pixels, only the words chosen here. Change it and the model's world changes.
     """
     h, w = r.orig_shape
-    people, others = [], set()
+    people, pets, others = [], {}, set()
     for box in r.boxes:
         name = model.names[int(box.cls)]
-        if name != "person":
+        if name != "person" and name not in PETS:
             others.add(name)                 # only with --all; see watch()
             continue
         x1, y1, x2, y2 = box.xyxy[0].tolist()
         cx = (x1 + x2) / 2
         side = "left" if cx < w / 3 else "right" if cx > 2 * w / 3 else "center"   # which third of the frame
         dist = "close" if (y2 - y1) > 0.6 * h else "far"                           # how tall the box is
-        people.append(f"{side}/{dist}")
+        if name == "person":
+            people.append(f"{side}/{dist}")
+        else:
+            pets.setdefault(name, []).append(f"{side}/{dist}")
     reading = f"{len(people)} person(s) at {', '.join(people)}" if people else "nobody"
+    for name, spots in sorted(pets.items()):  # e.g. "nobody; 1 cat(s) at left/far"
+        reading += f"; {len(spots)} {name}(s) at {', '.join(spots)}"
     if others:
         reading += "; also " + ", ".join(sorted(others))
     return reading
