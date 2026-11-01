@@ -487,11 +487,13 @@ The current plan, discussed with Zhimeng:
 
 After comparing the options, we chose idea 3, Sleep bot for pet.
 
-<mark>TODO Storyboard panel 1 (before bed): how does the person hand the night over, and how does the device acknowledge it?</mark>
+![Hand-drawn three-panel storyboard for Sleep bot for pet](images/partF_storyboard.jpg)
 
-<mark>TODO Storyboard panel 2 (while asleep): what does the device watch or work through?</mark>
+Before bed: The person holds an OK sign up to the Pi camera for a second. The device answers "Good night" and starts watching. The camera points at the cat.
 
-<mark>TODO Storyboard panel 3 (when awake): what is the one thing the person learns, and in what medium?</mark>
+While sleep: The person is asleep and out of the camera's view. The cat goes to eat at night. The camera looks every 5 seconds and writes a line only when the picture changes: the time and where the cat is.
+
+When awake: In the morning, morning_pet.py first lists the times the camera really saw the cat, then one line Qwen guesses the cat said, marked as a guess.
 
 <mark>TODO Verplank diagram (optional):</mark>
 
