@@ -543,6 +543,8 @@ How it works ([bedtime.py](bedtime.py)), run inside tmux as the README asks:
 4. The device acknowledges with "Good night. I will watch for your pet until morning." in the terminal, "Good night" in the window with `--show`, or out loud with `--speak` (off by default).
 5. It writes the hand-off time into `night_log.jsonl` and starts the night shift, `overnight.py --all`.
 
+In fake nights 3 and 4 the OK sign was recognized and the night shift started at 01:14:36 and 01:18:50.
+
 ## Part H. 
 ### Incorporate the observant system
 
@@ -653,7 +655,7 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 **Looks like:** <mark>TODO: photos of where the Pi and camera sit for the night (pointed at the pet's area, not the bed), at bedtime and in the morning.</mark>
 
-**Works like:** webcam → YOLO (`yolo26n`, all 80 classes, one look every 5 s) → `interpret()` writes one reading such as `nobody; 1 cat(s) at left/far` → only changes go into `night_log.jsonl` → in the morning `morning_pet.py` lists the pet sightings and asks Qwen (`qwen3.5:0.8b`) to guess what the pet said. <mark>TODO: an excerpt from the real night's log.</mark>
+**Works like:** webcam → YOLO (`yolo26n`, all 80 classes, 640-pixel frames, one look every 5 s) → `interpret()` writes one reading such as `nobody; 1 cat(s) at left/far` → only changes go into `night_log.jsonl` → in the morning `morning_pet.py` lists the pet sightings and asks Qwen (`qwen3.5:0.8b`) to guess what the pet said. <mark>TODO: an excerpt from the real night's log.</mark>
 
 **Acts like:** at bedtime the person holds up an OK sign and the device says good night; in the morning they get the times the pet was seen and a guessed line for a few of those moments. <mark>TODO: video.</mark>
 
