@@ -50,7 +50,7 @@ while True:
         ok, frame = cap.read()
         if not ok:
             raise RuntimeError("no frame")
-        r = model.predict(frame, imgsz=320, conf=0.4, classes=classes, verbose=False)[0]
+        r = model.predict(frame, imgsz=640, conf=0.25, classes=classes, verbose=False)[0]   # bigger frame and a lower bar so a pet across the room is not missed; interpret() keeps 0.4 for everything but pets
         reading = interpret(r)
         now = datetime.datetime.now()
         ts = now.isoformat(timespec="seconds")

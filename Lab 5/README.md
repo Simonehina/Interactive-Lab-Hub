@@ -576,6 +576,18 @@ We changed `interpret()` in [yolo_to_qwen.py](yolo_to_qwen.py) so cats and dogs 
 
 `morning.py` said one person was observed at close range the whole time, which matches the log. It also said "the camera shifted focus to the center of the room at 18:48:09"; the camera did not move, the person moved from left to center. No cat appeared in the log, and the reading never became "nobody".
 
+In the third fake night we ran the whole chain (`bedtime.py` → `overnight.py --all`) and held up a photo of a cat on a phone. YOLO labeled it "teddy bear", never "cat" ([logs/partH_fake_night3_full.log](logs/partH_fake_night3_full.log)). So we changed `overnight.py` to look at 640-pixel frames instead of 320, with a confidence bar of 0.25; `interpret()` keeps the old 0.4 bar for everything except cats and dogs. In the fourth fake night the same cat photo was logged 5 times in about a minute ([logs/partH_fake_night4_full.log](logs/partH_fake_night4_full.log)):
+
+```
+{"t": "2026-11-01T01:18:50", "handoff": "ok sign"}
+{"t": "2026-11-01T01:18:58", "reading": "1 person(s) at center/close"}
+{"t": "2026-11-01T01:19:08", "reading": "nobody; 1 cat(s) at left/close"}
+{"t": "2026-11-01T01:19:13", "reading": "1 person(s) at center/close"}
+{"t": "2026-11-01T01:19:18", "reading": "1 person(s) at center/close; 1 cat(s) at left/close; also laptop"}
+{"t": "2026-11-01T01:19:29", "reading": "1 person(s) at center/close; 1 cat(s) at left/far"}
+{"t": "2026-11-01T01:19:44", "reading": "1 person(s) at left/far; 1 cat(s) at left/far"}
+```
+
 <mark>TODO: screenshots or video of the real night run.</mark>
 
 ## Part I. 
@@ -605,6 +617,20 @@ pet sightings per hour: {}
 
 Quiet night. The camera watched from 18:47 to 18:48 and did not see your pet.
 ```
+
+Run on the fourth fake night, with the cat photo:
+
+```
+Watched 01:18 to 01:19, handed over at 01:18 with an OK sign
+10 changes, 5 with a pet in view, 1 heartbeats
+
+What your pet might have said (a guess by Qwen):
+01:19:08 "I'm just waiting for you to come back."
+01:19:18 "Let me check if I missed my treat."
+01:19:29 "Can we grab a snack before the sun goes down?"
+```
+
+The times are real sightings from the log. The words are Qwen's guess, and "before the sun goes down" does not fit a sighting at 1 a.m.
 
 <mark>TODO: the morning reveal from the real night.</mark>
 

@@ -1,0 +1,30 @@
+=== night_log.jsonl
+{"t": "2026-11-01T01:18:50", "handoff": "ok sign"}
+{"t": "2026-11-01T01:18:58", "reading": "1 person(s) at center/close"}
+{"t": "2026-11-01T01:18:58", "alive": true}
+{"t": "2026-11-01T01:19:08", "reading": "nobody; 1 cat(s) at left/close"}
+{"t": "2026-11-01T01:19:13", "reading": "1 person(s) at center/close"}
+{"t": "2026-11-01T01:19:18", "reading": "1 person(s) at center/close; 1 cat(s) at left/close; also laptop"}
+{"t": "2026-11-01T01:19:23", "reading": "1 person(s) at center/close"}
+{"t": "2026-11-01T01:19:29", "reading": "1 person(s) at center/close; 1 cat(s) at left/far"}
+{"t": "2026-11-01T01:19:39", "reading": "1 person(s) at center/close; also cell phone, remote"}
+{"t": "2026-11-01T01:19:44", "reading": "1 person(s) at left/far; 1 cat(s) at left/far"}
+{"t": "2026-11-01T01:19:49", "reading": "1 person(s) at center/close; 1 cat(s) at left/far"}
+{"t": "2026-11-01T01:19:54", "reading": "1 person(s) at center/close"}
+=== python morning_pet.py
+Watched 01:18 to 01:19, handed over at 01:18 with an OK sign
+10 changes, 5 with a pet in view, 1 heartbeats
+pet sightings per hour: {'01:00': 5}
+
+What the camera saw (from the log):
+01:19:08 nobody; 1 cat(s) at left/close
+01:19:18 1 person(s) at center/close; 1 cat(s) at left/close; also laptop
+01:19:29 1 person(s) at center/close; 1 cat(s) at left/far
+01:19:44 1 person(s) at left/far; 1 cat(s) at left/far
+01:19:49 1 person(s) at center/close; 1 cat(s) at left/far
+
+What your pet might have said (a guess by Qwen):
+
+01:19:08 "I'm just waiting for you to come back."
+01:19:18 "Let me check if I missed my treat."
+01:19:29 "Can we grab a snack before the sun goes down?"

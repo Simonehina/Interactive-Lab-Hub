@@ -41,6 +41,8 @@ def interpret(r):
     people, pets, others = [], {}, set()
     for box in r.boxes:
         name = model.names[int(box.cls)]
+        if name not in PETS and float(box.conf) < 0.4:
+            continue                         # overnight.py asks for 0.25 so pets are not missed; keep 0.4 for the rest
         if name != "person" and name not in PETS:
             others.add(name)                 # only with --all; see watch()
             continue

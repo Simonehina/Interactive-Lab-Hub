@@ -1,0 +1,15 @@
+=== night_log.jsonl
+{"t": "2026-11-01T01:14:36", "handoff": "ok sign"}
+{"t": "2026-11-01T01:14:58", "reading": "1 person(s) at center/close; also cell phone"}
+{"t": "2026-11-01T01:14:58", "alive": true}
+{"t": "2026-11-01T01:15:03", "reading": "1 person(s) at center/close; also teddy bear"}
+{"t": "2026-11-01T01:15:08", "reading": "1 person(s) at center/close"}
+{"t": "2026-11-01T01:15:13", "reading": "1 person(s) at right/close"}
+{"t": "2026-11-01T01:15:19", "reading": "nobody; also teddy bear"}
+{"t": "2026-11-01T01:15:34", "reading": "1 person(s) at center/close; also book"}
+=== python morning_pet.py
+Watched 01:14 to 01:15, handed over at 01:14 with an OK sign
+6 changes, 0 with a pet in view, 1 heartbeats
+pet sightings per hour: {}
+
+Quiet night. The camera watched from 01:14 to 01:15 and did not see your pet.
