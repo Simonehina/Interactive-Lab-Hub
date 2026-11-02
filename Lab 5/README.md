@@ -507,7 +507,7 @@ When awake: In the morning, morning_pet.py first lists the times the camera real
 
    **Put the feedback for your ideas here.**
 
-   <mark>TODO: feedback from classmates.</mark>
+   Feedback from classmates: with the earlier design, you couldn't see on your phone what the cat actually did at night, so the whole product didn't feel convincing. It was missing a real, concrete output. The only output was a conversation, which felt useless.
 
 <details>
 <summary>Instructions</summary>
@@ -522,7 +522,7 @@ When awake: In the morning, morning_pet.py first lists the times the camera real
 
 ![Revised storyboard, drawn by hand](images/partF_revised_storyboard_hand.jpg)
 
-Simin drew this improved version by hand, using what the real run showed us (Part H).
+Simin drew this improved version by hand, using the feedback above and what the real run showed us (Part H).
 
 Before: Fill the bowl, turn on a small lamp, hold an OK sign to the camera on the floor next to the bowl.
 
