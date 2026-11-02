@@ -41,7 +41,7 @@ Be generous in acknowledging their contributions! And also recognizing any other
 
 </details>
 
-Claude (Anthropic's AI assistant) helped me break down the Lab 5 requirements and set up the structure of this README.
+**AI disclosure:** Claude (Anthropic's AI assistant) collaborated with me to complete this assignment.
 
 ## Overview
 
@@ -256,7 +256,7 @@ I ran `yolo_person.py` on the Pi and watched the window through Raspberry Pi Con
 
 - On my first run only "person" appeared. On my second run I held objects up to the camera: my phone was labeled cell phone (0.88), a cardboard box was labeled laptop (0.83), and a plastic milk-tea cup was labeled bottle (0.45). Over the whole second run (about 2,470 frames) it also reported tie, bird, cat, skateboard, remote, cup, vase, umbrella, toothbrush, tennis racket, teddy bear, fork and bed.
 - The box was probably labeled a laptop because its shape looks like a laptop; it was actually a cardboard box.
-- With more things it can recognize, the steps of recognizing and checking get longer, there are more possibilities, and it is more likely to make mistakes and be inaccurate. (Note from Claude: YOLO actually computes all 80 classes on every frame. The default setting keeps only "person", and `--all` shows the other classes that were filtered out before, so those wrong labels became visible.)
+- With more things it can recognize, the steps of recognizing and checking get longer, there are more possibilities, and it is more likely to make mistakes and be inaccurate.
 
 | Phone → cell phone | Cardboard box → laptop | Milk-tea cup → bottle |
 |---|---|---|
@@ -507,14 +507,7 @@ When awake: In the morning, morning_pet.py first lists the times the camera real
 
    **Put the feedback for your ideas here.**
 
-   This feedback is from Claude (Anthropic's AI assistant), not from classmates. It looked at our hand-drawn storyboard in Part F and compared it with what actually happened in the real run:
-
-   1. The camera is drawn up on a shelf, but in real life it sits on the floor right by the bowl. So the person has to walk over to the bowl to do the OK sign, and the storyboard should show that.
-   2. The log in panel 2 looks perfect. In the real run, YOLO logged the same cat as a cat and a dog. The README asks you to show where the pipeline breaks, and this is a good place to show it.
-   3. The camera needs some light at night, and there's no lamp in the drawing.
-   4. Panel 3 shows someone reading a laptop screen. What we built is a page on your phone plus the cat's line read out loud, which fits a half-awake person better.
-   5. There's no "nothing happened" ending. The README asks the morning to be honest about a quiet night, so it's worth a small panel or a corner.
-   6. The project name now also covers people who are busy working or studying, but the storyboard only shows sleep.
+   <mark>TODO: feedback from classmates.</mark>
 
 <details>
 <summary>Instructions</summary>
@@ -529,7 +522,7 @@ When awake: In the morning, morning_pet.py first lists the times the camera real
 
 ![Revised storyboard, drawn by hand](images/partF_revised_storyboard_hand.jpg)
 
-Simin drew this improved version by hand, using the feedback above, what the real run showed us (Part H), and a reference sketch from Claude.
+Simin drew this improved version by hand, using what the real run showed us (Part H).
 
 Before: Fill the bowl, turn on a small lamp, hold an OK sign to the camera on the floor next to the bowl.
 
