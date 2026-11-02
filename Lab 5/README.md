@@ -714,6 +714,8 @@ One more piece: we wanted the owner to be able to check on the cat the next day 
 
 (We made this screenshot on a laptop from the same log and one of the real Qwen replies, because the Pi was at home and we weren't. So it only has 3 of the 24 snapshots, and it says 20:55 instead of 20:58, since the laptop copy didn't have the time-lapse frames it uses to find the end time.)
 
+The page itself is in [report/index.html](report/index.html) (GitHub shows it as code, so download the `report` folder and open `index.html` in a browser). And here's a screen recording of it at phone size, scrolling down while the time-lapse plays: [videos/sleepbot_morning_page.mp4](videos/sleepbot_morning_page.mp4). It was recorded from the same laptop copy, so it has the same two differences.
+
 ## Final documentation
 
 <details>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sleep bot for pet</title>
+<style>
+  :root { --bg: #fbf6ee; --ink: #2b2620; --soft: #7a6f62; --card: #fffdf8; --line: #e6dccd; --accent: #c8642c; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #1d1a17; --ink: #efe7dc; --soft: #a99d8f; --card: #27231f; --line: #3a342e; --accent: #e8925d; } }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.5 -apple-system, system-ui, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 32px 0 10px; color: var(--accent); }
+  .soft { color: var(--soft); margin: 0; }
+  ul { padding-left: 20px; margin: 0; }
+  .bubble { background: var(--card); border: 1px solid var(--line); border-radius: 18px 18px 18px 4px; padding: 10px 14px; margin: 0 0 10px; }
+  video { width: 100%; border-radius: 12px; background: #000; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  figure { margin: 0; } img { width: 100%; border-radius: 8px; display: block; }
+  figcaption { font-size: 0.8rem; color: var(--soft); }
+  details pre { white-space: pre-wrap; font-size: 0.8rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+</style></head><body><main>
+<h1>Sleep bot for pet</h1>
+<p class="soft">2026-11-01 &middot; Watched 20:27 to 20:55, handed over at 20:27 with an OK sign. 24 of 31 changes had your pet in view.</p>
+<h2>Visits to the bowls</h2>
+<ul><li>20:32-20:35 (3 min)</li><li>20:53-20:55 (2 min)</li></ul>
+<h2>What your pet might have said</h2><p class='bubble'>[20:32] &quot;I&#x27;m so hungry right now!&quot;</p><p class='bubble'>[20:53] &quot;It&#x27;s been a long wait!&quot;</p><p class='soft'>A guess by Qwen (qwen3.5:0.8b). YOLO only sees where the pet is, not what it does.</p>
+<h2>Time-lapse</h2><video src='lapse.mp4#t=0.1' controls playsinline muted preload='metadata'></video>
+<h2>Snapshots</h2><div class='grid'><figure><img src='snaps/20261101-203353.jpg' loading='lazy' alt='snapshot'><figcaption>20:33:53</figcaption></figure><figure><img src='snaps/20261101-203414.jpg' loading='lazy' alt='snapshot'><figcaption>20:34:14</figcaption></figure><figure><img src='snaps/20261101-205307.jpg' loading='lazy' alt='snapshot'><figcaption>20:53:07</figcaption></figure></div>
+<h2>The log</h2><details><summary>Moments with your pet in view</summary><pre>20:32:14 nobody; 1 cat(s) at right/close
+20:32:51 nobody; 1 cat(s) at right/far
+20:33:48 nobody; 1 cat(s) at right/far
+20:33:53 nobody; 1 dog(s) at right/far
+20:33:58 nobody; 1 dog(s) at right/far; also refrigerator
+20:34:03 nobody; 1 dog(s) at right/far
+20:34:09 nobody; 1 cat(s) at right/far
+20:34:14 nobody; 1 cat(s) at right/far; 1 dog(s) at right/far
+20:34:19 nobody; 1 dog(s) at right/far
+20:34:24 nobody; 1 cat(s) at right/far
+20:34:40 nobody; 1 dog(s) at right/far
+20:35:01 nobody; 1 cat(s) at right/far; also refrigerator
+20:35:06 nobody; 1 cat(s) at right/far
+20:53:07 nobody; 1 cat(s) at left/close
+20:53:12 nobody; 1 cat(s) at right/far
+20:53:17 nobody; 1 cat(s) at right/far; 1 dog(s) at right/far
+20:53:28 nobody; 1 cat(s) at right/far
+20:53:54 nobody; 1 dog(s) at right/far
+20:54:04 nobody; 1 cat(s) at right/far; 1 dog(s) at right/far
+20:54:10 nobody; 1 cat(s) at right/far
+20:54:20 nobody; 1 cat(s) at right/far; 1 dog(s) at right/far
+20:54:25 nobody; 1 dog(s) at right/far
+20:54:30 nobody; 1 cat(s) at right/far; 1 dog(s) at right/far
+20:54:36 nobody; 1 cat(s) at right/far</pre></details>
+</main></body></html>
