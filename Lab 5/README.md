@@ -527,9 +527,17 @@ When awake: In the morning, morning_pet.py first lists the times the camera real
 
 \*\*\***Post your revised storyboard here.**\*\*\*
 
-![Revised three-panel storyboard](images/partF_revised_storyboard.png)
+![Revised storyboard, drawn by hand](images/partF_revised_storyboard_hand.jpg)
 
-We revised it with the feedback above and with what the real run showed us (Part H). This version was drawn with Claude, based on Simin's hand-drawn storyboard in Part F, and the times and lines in it come from the real run. What changed: the camera now sits on the floor next to the bowl with a small lamp on, panel 2 shows the moment one cat got logged as "1 cat + 1 dog", the night also saves a time-lapse, and the morning is a page on the phone plus the cat's line read out loud, with a "Quiet night" message for nights the cat never shows up.
+Simin drew this improved version by hand, using the feedback above, what the real run showed us (Part H), and a reference sketch from Claude.
+
+Before: Fill the bowl, turn on a small lamp, hold an OK sign to the camera on the floor next to the bowl.
+
+While asleep or busy: The cat comes to eat. Every 5s the camera writes where the cat is and saves a time-lapse frame. Sometimes it will break, logged a cat as a dog.
+
+After: open "pipi.local:8000" on the phone to visit the website, which include the time-lapse video and motions of the cat.
+
+What changed from the first storyboard: the camera now sits on the floor next to the bowl with a small lamp on, the middle panel shows where the pipeline breaks (one cat logged as a dog), the night also saves a time-lapse (1 frame every 10 s), and the morning is a web page on the phone plus the cat's line read out loud.
 
 ## Part G. 
 ### Design the interaction before
