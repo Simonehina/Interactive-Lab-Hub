@@ -496,8 +496,6 @@ While sleep: The person is asleep and out of the camera's view. The cat goes to 
 
 When awake: In the morning, morning_pet.py first lists the times the camera really saw the cat, then one line Qwen guesses the cat said, marked as a guess.
 
-<mark>TODO Verplank diagram (optional):</mark>
-
 ## Prep for Part 2
 
 <details>
@@ -720,7 +718,9 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 ![What the camera sees](images/real_camera_view.jpg)
 
-<mark>TODO: a photo of the Pi and the camera themselves.</mark>
+And here's the webcam itself, on its little tripod on the floor, with the cable going off to the Pi. The cat came over to check it out right away:
+
+<img src="images/looks_like_camera_cat1.jpg" alt="The cat sniffing the webcam on the floor" width="45%"> <img src="images/looks_like_camera_cat2.jpg" alt="The cat in front of the webcam on the floor" width="45%">
 
 **Works like:** webcam → YOLO (`yolo26n`, all 80 classes, 640-pixel frames, one look every 5 s; every 3 s in the second run) → `interpret()` turns each look into one reading like `nobody; 1 cat(s) at right/far` → only changes go into `night_log.jsonl`, plus a snapshot whenever something's in view, plus a time-lapse frame every 10 s → when the run ends, `lapse.py` makes `lapse.mp4` → in the morning `morning_pet.py` groups the sightings into visits, asks Qwen (`qwen3.5:0.8b`) to guess what the cat said, reads it out loud and writes the web page. Real data: [logs/real_night1_30min.jsonl](logs/real_night1_30min.jsonl), with an excerpt in Part H.
 
