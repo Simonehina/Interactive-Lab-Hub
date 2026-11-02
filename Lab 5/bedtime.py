@@ -5,6 +5,7 @@ the device says good night and starts the night shift (overnight.py --all).
     python bedtime.py              # wait for the OK sign, then start the night shift
     python bedtime.py --show       # also open a window with the hand drawn on it (Pi desktop / Pi Connect)
     python bedtime.py --speak      # also say "good night" out loud with espeak-ng (makes a sound)
+    python bedtime.py --minutes 30 --lapse 10   # anything else is passed on to overnight.py
 
 Run it inside tmux (README Part H) so the night shift keeps going after you close the laptop:
     tmux new -s night
@@ -32,7 +33,7 @@ HOLD = 15                                   # frames in a row (about a second)
 parser = argparse.ArgumentParser()
 parser.add_argument("--show", action="store_true", help="open a window (needs the Pi desktop)")
 parser.add_argument("--speak", action="store_true", help="say good night with espeak-ng (makes a sound)")
-args = parser.parse_args()
+args, rest = parser.parse_known_args()      # the rest goes to overnight.py
 
 
 def dist(a, b):
@@ -92,4 +93,4 @@ cap.release()                               # the night shift needs the camera
 with open("night_log.jsonl", "a") as log:   # so the morning knows when the night was handed over
     log.write(json.dumps({"t": now.isoformat(timespec="seconds"), "handoff": "ok sign"}) + "\n")
 
-os.execv(sys.executable, [sys.executable, "overnight.py", "--all"])
+os.execv(sys.executable, [sys.executable, "overnight.py", "--all", *rest])

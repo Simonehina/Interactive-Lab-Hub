@@ -4,7 +4,8 @@
 
 **Members:** Simin Xu (sx333, Simonehina), Zhimeng Zhang (zz979, Flora130)
 
-**Project name:** Sleep bot for pet: it recognizes pets during the night and guesses their conversation.
+**Project name:** Sleep bot for pet<br>
+(It recognizes pets while people are asleep, or while they focus on their jobs, study or homework. Meanwhile it helps people see what their pet is doing, when and how long it stayed by its bowls, and guesses the pet's conversation.)
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
@@ -547,6 +548,8 @@ How it works ([bedtime.py](bedtime.py)), run inside tmux as the README asks:
 
 In fake nights 3 and 4 the OK sign was recognized and the night shift started at 01:14:36 and 01:18:50.
 
+For the real run on Nov 1, the OK sign got recognized at 20:27:56, it said good night, and the night shift started right after. `bedtime.py` now also passes any extra options on to `overnight.py`, so the whole thing starts with one command: `python bedtime.py --minutes 30 --lapse 10` (more on those options in Part H).
+
 ## Part H. 
 ### Incorporate the observant system
 
@@ -592,7 +595,30 @@ In the third fake night we ran the whole chain (`bedtime.py` → `overnight.py -
 {"t": "2026-11-01T01:19:44", "reading": "1 person(s) at left/far; 1 cat(s) at left/far"}
 ```
 
-<mark>TODO: screenshots or video of the real night run.</mark>
+Then the real run. To be upfront, it wasn't a whole night. The lab was due that same night, so on Nov 1 we ran it for 30 minutes, 20:28 to 20:58, with the camera on the floor next to the cat's food bowl (not pointed at a bed). For this we gave [overnight.py](overnight.py) two new options. `--minutes 30` makes it stop by itself. `--lapse 10` saves a frame with YOLO's boxes and the current reading every 10 seconds, and when the run ends it calls the new [lapse.py](lapse.py) to turn those frames into a time-lapse video. We wanted the time-lapse to be something the device leaves behind every night, not something we stitch together by hand afterwards. We also made `overnight.py` write a `stopped` line when it ends, because during a quiet stretch nothing new goes into the log, and then the log can't tell you when the watch actually ended.
+
+Here's the time-lapse from those 30 minutes: [videos/sleepbot_timelapse_30min.mp4](videos/sleepbot_timelapse_30min.mp4) (180 frames, 18 seconds). The full log is [logs/real_night1_30min.jsonl](logs/real_night1_30min.jsonl). The cat came by twice, around 20:32 and again around 20:53. A piece of the log from the first visit:
+
+```
+{"t": "2026-11-01T20:27:56", "handoff": "ok sign"}
+{"t": "2026-11-01T20:28:15", "reading": "nobody"}
+{"t": "2026-11-01T20:32:14", "reading": "nobody; 1 cat(s) at right/close"}
+{"t": "2026-11-01T20:32:19", "reading": "nobody"}
+{"t": "2026-11-01T20:32:51", "reading": "nobody; 1 cat(s) at right/far"}
+{"t": "2026-11-01T20:33:06", "reading": "nobody"}
+{"t": "2026-11-01T20:33:48", "reading": "nobody; 1 cat(s) at right/far"}
+{"t": "2026-11-01T20:33:53", "reading": "nobody; 1 dog(s) at right/far"}
+{"t": "2026-11-01T20:33:58", "reading": "nobody; 1 dog(s) at right/far; also refrigerator"}
+{"t": "2026-11-01T20:34:03", "reading": "nobody; 1 dog(s) at right/far"}
+{"t": "2026-11-01T20:34:09", "reading": "nobody; 1 cat(s) at right/far"}
+{"t": "2026-11-01T20:34:14", "reading": "nobody; 1 cat(s) at right/far; 1 dog(s) at right/far"}
+```
+
+![The snapshot overnight.py saved at 20:34:14](images/real_snap_203414.jpg)
+
+That's the snapshot `overnight.py` saved at 20:34:14. There's one cat in it, but the log line for that moment says `1 cat(s) at right/far; 1 dog(s) at right/far`. YOLO put a cat box and a dog box on the same cat, and `interpret()` counts every box, so one cat turned into two pets. That's where our pipeline breaks. We only checked this one snapshot, but our guess is that the other "dog" lines are the same cat too.
+
+We also did a second run right after: 10 minutes, with a look and a time-lapse frame every 3 seconds (`--interval 3 --lapse 3`). That's faster than the README's "one look every 5 to 30 seconds", but it was only for 10 minutes, and the Pi ended at 63.7°C. The cat didn't come back this time, so the whole log is just `nobody` (the quiet-night output is in Part I).
 
 ## Part I. 
 ### Design the interaction after
@@ -610,7 +636,7 @@ Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from 
 
 </details>
 
-Our reveal is [morning_pet.py](morning_pet.py). It first lists what the camera actually saw of the pet, taken from the log. Then Qwen guesses what the pet might have been saying at up to three of those moments, in the pet's own voice. The output is labeled as a guess, and the prompt tells Qwen to use only times and places from the log. If the log never shows a pet, it says so and does not ask the model. `--speak` reads the guess aloud with espeak-ng.
+Our reveal is [morning_pet.py](morning_pet.py). The first version lists what the camera actually saw of the pet, taken from the log. Then Qwen guesses what the pet might have been saying at up to three of those moments, in the pet's own voice. The output is labeled as a guess, and the prompt tells Qwen to use only times and places from the log. If the log never shows a pet, it says so and does not ask the model. `--speak` reads the guess aloud with espeak-ng.
 
 Run on the second fake night, which had no pet in it:
 
@@ -636,7 +662,42 @@ What your pet might have said (a guess by Qwen):
 
 The times are real sightings from the log. The words are Qwen's guess, and "before the sun goes down" does not fit a sighting at 1 a.m.
 
-<mark>TODO: the morning reveal from the real night.</mark>
+Then came the real run, and a few changes to `morning_pet.py`.
+
+The first time we ran it on the real log, Qwen didn't guess anything. It just copied three log lines back, like `20:54:36 nobody; 1 cat(s) at right/far`. The small model gets lost in a long list of raw readings. So now `morning_pet.py` groups the sightings into visits to the bowls (if the cat is out of frame for less than 2 minutes, it's still the same visit) and only gives Qwen the visit times and how long each one lasted. It also tells Qwen the camera sits next to the food and water bowls. YOLO can't tell what the cat is doing, only where it is, but next to the bowls it's most likely eating or drinking, so the lines should be about food and water. Last, it asks for the answer in the form `[time] "what the cat says"`. We tried giving it example lines like "I'm full now" instead, and it just repeated them, so the format is all it gets.
+
+Here's the real morning on the 30-minute log:
+
+```
+Watched 20:27 to 20:58, handed over at 20:27 with an OK sign
+31 changes, 24 with a pet in view, 3 heartbeats
+pet sightings per hour: {'20:00': 24}
+visits to the bowls: 20:32-20:35 (3 min), 20:53-20:55 (2 min)
+
+What your pet might have said (a guess by Qwen):
+
+[20:32] "Oh wow, those bowls are so full! I'm starving."
+[20:53] "Finally, enough to eat. Thanks for feeding me!"
+```
+
+With `--speak`, the Pi reads the lines out loud through the speaker. We ran it a few times and got something different every time, like "I'm so hungry right now!" / "It's been a long wait!", or "The water is so cold!". Once it skipped the 20:32 visit and only wrote one line. The visit times come from the log; the words are just Qwen's guess, and both the terminal and the page say so.
+
+On the 10-minute run where the cat never showed up, it stays honest and doesn't call the model at all:
+
+```
+Watched 21:05 to 21:15
+1 changes, 0 with a pet in view, 1 heartbeats
+pet sightings per hour: {}
+visits to the bowls: none
+
+Quiet night. The camera watched from 21:05 to 21:15 and did not see your pet.
+```
+
+One more piece: we wanted the owner to be able to check on the cat the next day without opening a terminal. So `morning_pet.py` also writes a small web page, `report/index.html`, with the visits, the guessed lines, the time-lapse and some snapshots. `python morning_pet.py --serve` serves it from the Pi, and anyone on the home Wi-Fi can open http://pipi.local:8000 on their phone. It only serves that one folder, so everything stays on the Pi and the home network.
+
+![The morning page on a phone](images/partI_report_page_phone.png)
+
+(We made this screenshot on a laptop from the same log and one of the real Qwen replies, because the Pi was at home and we weren't. So it only has 3 of the 24 snapshots, and it says 20:55 instead of 20:58, since the laptop copy didn't have the time-lapse frames it uses to find the end time.)
 
 ## Final documentation
 
@@ -653,13 +714,17 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
-<mark>TODO (Part 2): short video of the whole system.</mark>
+<mark>TODO: link to our final video.</mark>
 
-**Looks like:** <mark>TODO: photos of where the Pi and camera sit for the night (pointed at the pet's area, not the bed), at bedtime and in the morning.</mark>
+**Looks like:** the webcam sits low on the floor, pointed at the cat's food bowl, not at a bed. This is what it sees (a time-lapse frame from 20:28:41, before the cat came):
 
-**Works like:** webcam → YOLO (`yolo26n`, all 80 classes, 640-pixel frames, one look every 5 s) → `interpret()` writes one reading such as `nobody; 1 cat(s) at left/far` → only changes go into `night_log.jsonl` → in the morning `morning_pet.py` lists the pet sightings and asks Qwen (`qwen3.5:0.8b`) to guess what the pet said. <mark>TODO: an excerpt from the real night's log.</mark>
+![What the camera sees](images/real_camera_view.jpg)
 
-**Acts like:** at bedtime the person holds up an OK sign and the device says good night; in the morning they get the times the pet was seen and a guessed line for a few of those moments. <mark>TODO: video.</mark>
+<mark>TODO: a photo of the Pi and the camera themselves.</mark>
+
+**Works like:** webcam → YOLO (`yolo26n`, all 80 classes, 640-pixel frames, one look every 5 s; every 3 s in the second run) → `interpret()` turns each look into one reading like `nobody; 1 cat(s) at right/far` → only changes go into `night_log.jsonl`, plus a snapshot whenever something's in view, plus a time-lapse frame every 10 s → when the run ends, `lapse.py` makes `lapse.mp4` → in the morning `morning_pet.py` groups the sightings into visits, asks Qwen (`qwen3.5:0.8b`) to guess what the cat said, reads it out loud and writes the web page. Real data: [logs/real_night1_30min.jsonl](logs/real_night1_30min.jsonl), with an excerpt in Part H.
+
+**Acts like:** before, you hold up an OK sign, it says good night and starts watching. After, you get the visit times, the cat's "lines" read out loud, and a page on your phone with the time-lapse and snapshots. The video above shows the whole thing.
 
 <details>
 <summary>Instructions</summary>
