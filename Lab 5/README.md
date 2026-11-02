@@ -507,7 +507,14 @@ When awake: In the morning, morning_pet.py first lists the times the camera real
 
    **Put the feedback for your ideas here.**
 
-   <mark>TODO: feedback from classmates.</mark>
+   This feedback is from Claude (Anthropic's AI assistant), not from classmates. It looked at our hand-drawn storyboard in Part F and compared it with what actually happened in the real run:
+
+   1. The camera is drawn up on a shelf, but in real life it sits on the floor right by the bowl. So the person has to walk over to the bowl to do the OK sign, and the storyboard should show that.
+   2. The log in panel 2 looks perfect. In the real run, YOLO logged the same cat as a cat and a dog. The README asks you to show where the pipeline breaks, and this is a good place to show it.
+   3. The camera needs some light at night, and there's no lamp in the drawing.
+   4. Panel 3 shows someone reading a laptop screen. What we built is a page on your phone plus the cat's line read out loud, which fits a half-awake person better.
+   5. There's no "nothing happened" ending. The README asks the morning to be honest about a quiet night, so it's worth a small panel or a corner.
+   6. The project name now also covers people who are busy working or studying, but the storyboard only shows sleep.
 
 <details>
 <summary>Instructions</summary>
@@ -520,7 +527,9 @@ When awake: In the morning, morning_pet.py first lists the times the camera real
 
 \*\*\***Post your revised storyboard here.**\*\*\*
 
-<mark>TODO (Part 2): revised storyboard.</mark>
+![Revised three-panel storyboard](images/partF_revised_storyboard.png)
+
+We revised it with the feedback above and with what the real run showed us (Part H). This version was drawn with Claude, based on Simin's hand-drawn storyboard in Part F, and the times and lines in it come from the real run. What changed: the camera now sits on the floor next to the bowl with a small lamp on, panel 2 shows the moment one cat got logged as "1 cat + 1 dog", the night also saves a time-lapse, and the morning is a page on the phone plus the cat's line read out loud, with a "Quiet night" message for nights the cat never shows up.
 
 ## Part G. 
 ### Design the interaction before
