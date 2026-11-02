@@ -721,7 +721,9 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
-<mark>TODO: link to our final video.</mark>
+Here's our video of the whole system: [https://youtu.be/TojQvalwqxw](https://youtu.be/TojQvalwqxw)
+
+[![Sleep bot for pet video](https://img.youtube.com/vi/TojQvalwqxw/hqdefault.jpg)](https://youtu.be/TojQvalwqxw)
 
 **Looks like:** the webcam sits low on the floor, pointed at the cat's food bowl, not at a bed. This is what it sees (a time-lapse frame from 20:28:41, before the cat came):
 
