@@ -1,6 +1,9 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+Yangchen Jin(yj645)
+Yan Shen(ys2473)
+Simin Xu(sx333)
+Flora Zhang(
 
 For submission, replace this section with your documentation!
 
@@ -38,6 +41,8 @@ sudo apt-get install -y mosquitto-clients
 ```
 
 **Test it:**
+
+<img width="860" height="458" alt="image" src="https://github.com/user-attachments/assets/72794da6-d7fb-4c5e-894f-de2ff10eb26a" />
 
 **Subscribe to messages (listener):**
 ```bash
@@ -127,6 +132,11 @@ Hold colored objects near sensor to change your pixel!
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 
+<img width="1512" height="906" alt="a2a1aae089b897a6de91ea1162132058" src="https://github.com/user-attachments/assets/d6a88a63-7880-4d4c-bf24-e97698afd40d" />
+
+<img width="1280" height="1707" alt="e43c1871e6bfde431b308bc1f12249b9" src="https://github.com/user-attachments/assets/23f6fefc-4cdd-4d97-8ec3-90132270bdf6" />
+
+
 ---
 
 ## Part C: Make Your Own
@@ -137,6 +147,12 @@ Hold colored objects near sensor to change your pixel!
 - Meaningful or fun interaction
 
 **Ideas:**
+
+1. **Break vote light:** Each person waves in front of their own sensor to vote. Once everyone has voted, the Pi in the middle announces "Break time!"
+2. **RGB color mixing together:** Three Pis each control one part of the color (red, green, or blue). The three people use their sensors to work together and match a target color shown on a web page.
+3. **Color relay:** The first Pi detects a color and sends it out. The next person has to find an object with a similar color and get their sensor to recognize it, then pass it on to the next person.
+4. **Tug of war over the air:** Two Pis count how many times each team waves and send the counts over MQTT to the Pi in the middle. A servo on the middle Pi turns toward whichever team is ahead.
+5. **Combination lock:** Three Pis each check one condition: a certain color, a knob
 
 **Sensor Fortune Teller**
 - Each Pi sends 0-255 from different sensor
